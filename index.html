@@ -3,53 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>篇章結構解題訓練 — 學測攻略</title>
+<title>篇章結構解題訓練 — 學測指考攻略</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
-
-:root {
-  --bg:       #0c0b09;
-  --bg2:      #131210;
-  --surface:  #1c1a16;
-  --card:     #242018;
-  --border:   #38321e;
-  --border2:  #2a2518;
-  --gold:     #c8a24a;
-  --gold-dim: #7a6128;
-  --gold-bg:  #1e1a0c;
-  --text:     #e6d9b8;
-  --text-dim: #8a7d5e;
-  --text-xs:  #5a5040;
-  --green:    #5ab876;
-  --green-bg: #0e1e12;
-  --green-b:  #1e4028;
-  --red:      #d45050;
-  --red-bg:   #1e0e0e;
-  --red-b:    #4a1a1a;
-  --blue:     #5588cc;
-  --blue-bg:  #0e1622;
-  --blue-b:   #1a2e4a;
-  --amber:    #d4883a;
-  --amber-bg: #1e1208;
-  --teal:     #4aa8a0;
-  --teal-bg:  #0a1a18;
-  --teal-b:   #1a3830;
-  --purple:   #b066cc;
-  --purple-bg:#1a0e1e;
-  --purple-b: #3a1a4a;
+:root{
+  --bg:#0c0b09;--bg2:#131210;--surface:#1c1a16;--card:#242018;
+  --border:#38321e;--border2:#2a2518;
+  --gold:#c8a24a;--gold-dim:#7a6128;--gold-bg:#1e1a0c;
+  --text:#e6d9b8;--text-dim:#8a7d5e;--text-xs:#5a5040;
+  --green:#5ab876;--green-bg:#0e1e12;--green-b:#1e4028;
+  --red:#d45050;--red-bg:#1e0e0e;--red-b:#4a1a1a;
+  --blue:#5588cc;--blue-bg:#0e1622;--blue-b:#1a2e4a;
+  --amber:#d4883a;--amber-bg:#1e1208;
+  --teal:#4aa8a0;--teal-bg:#0a1a18;--teal-b:#1a3830;
+  --purple:#b066cc;--purple-bg:#1a0e1e;--purple-b:#3a1a4a;
 }
-
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Noto Sans TC',sans-serif;
-  min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;
-  padding:0 0 80px;
-}
-
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 0 80px;}
 .screen{width:100%;max-width:760px;padding:0 14px;display:none;flex-direction:column;align-items:center;}
 .screen.on{display:flex;}
 
@@ -59,1858 +30,811 @@ body{
 .site-hd h1{font-family:'Noto Serif TC',serif;font-size:clamp(19px,4.5vw,28px);font-weight:700;color:var(--text);letter-spacing:2px;margin-bottom:4px;}
 .site-hd .sub{font-size:11px;color:var(--text-dim);letter-spacing:1px;}
 
-/* CARD */
-.card{
-  width:100%;background:var(--card);
-  border:1px solid var(--border);border-radius:10px;
-  padding:22px 20px;margin-bottom:12px;
-  position:relative;overflow:hidden;
-}
-.card-top-line{
-  position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent 0%,var(--gold-dim) 40%,var(--gold) 50%,var(--gold-dim) 60%,transparent 100%);
-  opacity:.6;
-}
+/* TABS */
+.tab-bar{display:flex;gap:6px;width:100%;margin-bottom:16px;}
+.tab-btn{flex:1;padding:8px 4px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;
+  background:var(--surface);border:1px solid var(--border2);border-radius:6px;
+  color:var(--text-dim);cursor:pointer;transition:all .15s;text-align:center;}
+.tab-btn.active{background:var(--gold-bg);border-color:var(--gold-dim);color:var(--gold);}
 
-/* STAGE SECTIONS */
-.stage-section{width:100%;margin-bottom:20px;}
-.stage-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:0 2px;}
-.stage-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.stage-title{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;}
-.stage-progress{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-xs);margin-left:auto;}
-
-/* LESSON CARDS */
-.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+/* LESSON GRID */
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;}
 @media(max-width:460px){.lesson-grid{grid-template-columns:1fr;}}
-.lc{
-  background:var(--surface);border:1px solid var(--border2);
-  border-radius:8px;padding:14px 14px 12px;
-  cursor:pointer;transition:border-color .18s,background .18s;
-  position:relative;overflow:hidden;
-}
-.lc:hover:not(.lc-locked){border-color:var(--gold-dim);background:#1e1c16;}
-.lc.lc-locked{opacity:.38;cursor:not-allowed;}
+.lc{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:14px 14px 12px;cursor:pointer;transition:border-color .18s,background .18s;position:relative;overflow:hidden;}
+.lc:hover{border-color:var(--gold-dim);background:#1e1c16;}
 .lc.lc-done{border-color:var(--green-b);}
 .lc.lc-done::after{content:'✓';position:absolute;top:9px;right:11px;color:var(--green);font-family:'JetBrains Mono',monospace;font-size:11px;}
 .lc-num{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-xs);margin-bottom:5px;}
-.lc-score{display:inline-block;margin-top:4px;margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);border:1px solid var(--green-b);border-radius:4px;padding:1px 5px;}
+.lc-score{display:inline-block;margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);border:1px solid var(--green-b);border-radius:4px;padding:1px 5px;}
 .lc-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.4;}
 .lc-desc{font-size:11px;color:var(--text-dim);line-height:1.6;}
 .lc-tag{display:inline-block;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:1px;}
-.lc-locked .lc-num::before{content:'🔒 ';}
+.tag-exam{background:#1a0e06;color:#d4883a;border:1px solid #4a2e08;}
+.tag-gsat{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-b);}
 
 /* BACK BTN */
-.back-btn{
-  align-self:flex-start;
-  display:flex;align-items:center;gap:6px;
-  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
-  color:var(--text-dim);text-transform:uppercase;
-  background:none;border:1px solid var(--border2);border-radius:5px;
-  padding:7px 12px;cursor:pointer;margin:10px 0 16px;
-  transition:color .15s,border-color .15s;
-}
+.back-btn{align-self:flex-start;display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;background:none;border:1px solid var(--border2);border-radius:5px;padding:7px 12px;cursor:pointer;margin:10px 0 16px;transition:color .15s,border-color .15s;}
 .back-btn:hover{color:var(--gold);border-color:var(--gold-dim);}
 
-/* STRATEGY PAGE */
-.strategy-hero{
-  width:100%;text-align:center;
-  padding:28px 0 20px;border-bottom:1px solid var(--border2);margin-bottom:20px;
-}
-.strategy-hero .label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:10px;}
-.strategy-hero h2{font-family:'Noto Serif TC',serif;font-size:clamp(18px,4vw,26px);font-weight:700;color:var(--text);margin-bottom:6px;}
-.strategy-hero p{font-size:12px;color:var(--text-dim);line-height:1.7;max-width:480px;margin:0 auto;}
-
-/* STRATEGY STEPS */
-.step-card{
-  width:100%;background:var(--surface);
-  border:1px solid var(--border2);border-radius:10px;
-  padding:18px 18px 16px;margin-bottom:10px;
-  cursor:pointer;transition:border-color .18s;
-}
-.step-card:hover{border-color:var(--gold-dim);}
-.step-card.open{border-color:var(--gold-dim);}
-.step-head{display:flex;align-items:center;gap:12px;}
-.step-num{
-  width:28px;height:28px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
-}
-.step-title{font-size:13px;font-weight:700;color:var(--text);flex:1;line-height:1.4;}
-.step-arrow{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-xs);transition:transform .2s;}
-.step-card.open .step-arrow{transform:rotate(90deg);}
-.step-body{display:none;padding-top:14px;margin-top:14px;border-top:1px solid var(--border2);}
-.step-card.open .step-body{display:block;}
-.step-body p{font-size:12px;color:var(--text-dim);line-height:1.8;margin-bottom:10px;}
-.step-body p:last-child{margin-bottom:0;}
-
-/* EXAMPLE BOXES */
-.example-box{
-  background:var(--bg2);border:1px solid var(--border2);border-radius:7px;
-  padding:12px 14px;margin:10px 0;font-size:12px;line-height:1.8;
-}
-.example-box .ex-label{
-  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;
-  color:var(--gold-dim);text-transform:uppercase;margin-bottom:6px;
-}
-.hl-key{color:var(--gold);font-weight:700;}
-.hl-signal{color:var(--teal);font-weight:700;}
-.hl-answer{color:var(--green);font-weight:700;}
-.hl-wrong{color:var(--red);}
-
-/* SIGNAL TAG PILLS */
-.signal-group{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;}
-.sig-pill{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  padding:3px 9px;border-radius:4px;letter-spacing:.5px;
-}
-.sig-pronoun{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-b);}
-.sig-contrast{background:var(--red-bg);color:var(--red);border:1px solid var(--red-b);}
-.sig-example{background:var(--amber-bg);color:var(--amber);border:1px solid #4a2e08;}
-.sig-time{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-b);}
-.sig-summary{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-b);}
-
-/* SOS CHECKLIST */
-.checklist{list-style:none;padding:0;}
-.checklist li{
-  display:flex;align-items:flex-start;gap:10px;
-  padding:8px 0;border-bottom:1px solid var(--border2);
-  font-size:12px;color:var(--text-dim);line-height:1.6;
-}
-.checklist li:last-child{border-bottom:none;}
-.checklist .ci{
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-dim);
-  border-radius:3px;padding:2px 6px;margin-top:1px;flex-shrink:0;
-}
-
-/* START BTN */
-.start-btn{
-  width:100%;background:var(--gold-bg);color:var(--gold);
-  border:1px solid var(--gold-dim);border-radius:8px;
-  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;
-  text-transform:uppercase;padding:14px;cursor:pointer;margin-top:10px;
-  transition:background .18s,border-color .18s;
-}
-.start-btn:hover{background:#2a2010;border-color:var(--gold);}
-
-/* ── QUIZ SCREEN ── */
-.quiz-header{
-  width:100%;display:flex;align-items:center;gap:10px;
-  padding:12px 0;border-bottom:1px solid var(--border2);margin-bottom:16px;
-}
+/* QUIZ HEADER */
+.quiz-hd{width:100%;display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border2);margin-bottom:12px;}
 .quiz-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;flex:1;}
-.quiz-score{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-xs);}
+.quiz-meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-xs);}
+.prog-bar{width:100%;height:3px;background:var(--border2);border-radius:2px;margin-bottom:16px;}
+.prog-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s;}
 
-/* PROGRESS BAR */
-.prog-bar{width:100%;height:3px;background:var(--border2);border-radius:2px;margin-bottom:20px;}
-.prog-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s ease;}
-
-/* PHASE BADGE */
-.phase-badge{
-  display:inline-block;
-  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;
-  padding:3px 10px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;
-}
+/* MODE TOGGLE */
+.mode-toggle{display:flex;gap:6px;width:100%;margin-bottom:14px;}
+.mode-btn{flex:1;padding:7px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;background:var(--surface);border:1px solid var(--border2);border-radius:6px;color:var(--text-dim);cursor:pointer;text-align:center;transition:all .15s;}
+.mode-btn.active{background:var(--gold-bg);border-color:var(--gold-dim);color:var(--gold);}
 
 /* PASSAGE */
-.passage{
-  background:var(--surface);border:1px solid var(--border2);border-radius:10px;
-  padding:18px 18px;margin-bottom:14px;
-  font-size:13px;line-height:2.0;color:var(--text);
-}
-.passage .blank{
-  display:inline-block;
-  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
-  color:var(--gold);
-  background:var(--gold-bg);border:1px solid var(--gold-dim);
-  border-radius:4px;padding:1px 8px;margin:0 2px;
-  min-width:36px;text-align:center;
-}
-.blank.answered{color:var(--green);background:var(--green-bg);border-color:var(--green-b);}
-.blank.wrong-ans{color:var(--red);background:var(--red-bg);border-color:var(--red-b);}
+.passage-wrap{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:18px;margin-bottom:14px;font-size:13px;line-height:2.0;color:var(--text);}
+.blank{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--gold);background:var(--gold-bg);border:1px solid var(--gold-dim);border-radius:4px;padding:1px 8px;margin:0 2px;min-width:36px;text-align:center;cursor:pointer;transition:all .15s;}
+.blank:hover{background:#2a2010;border-color:var(--gold);}
+.blank.current{box-shadow:0 0 0 2px var(--gold);}
+.blank.answered-ok{color:var(--green);background:var(--green-bg);border-color:var(--green-b);}
+.blank.answered-err{color:var(--red);background:var(--red-bg);border-color:var(--red-b);}
 
-/* HINT BOX */
-.hint-box{
-  background:var(--blue-bg);border:1px solid var(--blue-b);border-radius:8px;
-  padding:12px 14px;margin-bottom:14px;
-  font-size:12px;color:#7aa8e8;line-height:1.8;
-}
-.hint-box .hint-label{
-  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;
-  color:var(--blue);text-transform:uppercase;margin-bottom:6px;
-}
+/* PRIORITY PANEL */
+.priority-panel{width:100%;margin-bottom:14px;}
+.priority-item{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:12px 14px;margin-bottom:6px;transition:border-color .15s;}
+.priority-item.current-q{border-color:var(--gold-dim);background:var(--gold-bg);}
+.priority-item.done-q{border-color:var(--green-b);opacity:.6;}
+.pi-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.pi-order{font-family:'JetBrains Mono',monospace;font-size:9px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg2);color:var(--text-xs);border:1px solid var(--border2);flex-shrink:0;}
+.priority-item.current-q .pi-order{background:var(--gold-bg);color:var(--gold);border-color:var(--gold-dim);}
+.pi-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);font-weight:700;}
+.pi-type{font-family:'JetBrains Mono',monospace;font-size:9px;padding:1px 6px;border-radius:3px;background:var(--bg2);color:var(--text-xs);border:1px solid var(--border2);}
+.pi-hook{font-size:12px;color:var(--text-dim);line-height:1.7;margin-bottom:4px;}
+.pi-signal{font-size:12px;color:var(--teal);line-height:1.7;}
+.pi-checkmark{margin-left:auto;color:var(--green);font-size:14px;}
 
-/* QUESTION STEM */
-.q-stem{
-  font-size:13px;font-weight:700;color:var(--text);
-  margin-bottom:14px;line-height:1.6;
-}
-.q-blank-num{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  color:var(--gold);background:var(--gold-bg);border:1px solid var(--gold-dim);
-  border-radius:4px;padding:1px 7px;margin-right:6px;
-}
+/* Q STEM */
+.q-stem{font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px;line-height:1.6;}
+.q-blank-badge{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);background:var(--gold-bg);border:1px solid var(--gold-dim);border-radius:4px;padding:1px 7px;margin-right:6px;}
 
 /* OPTIONS */
-.options{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
-.opt{
-  background:var(--surface);border:1px solid var(--border2);border-radius:8px;
-  padding:12px 14px;cursor:pointer;transition:border-color .15s,background .15s;
-  font-size:12px;line-height:1.7;color:var(--text);
-  display:flex;gap:10px;align-items:flex-start;
-}
-.opt:hover:not(.opt-disabled){border-color:var(--gold-dim);background:#1e1c16;}
-.opt-letter{
-  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
-  background:var(--bg2);border:1px solid var(--border2);
-  border-radius:3px;padding:1px 6px;flex-shrink:0;margin-top:1px;
-  color:var(--text-dim);
-}
-.opt.opt-correct{border-color:var(--green-b);background:var(--green-bg);}
-.opt.opt-correct .opt-letter{background:var(--green-bg);color:var(--green);border-color:var(--green-b);}
-.opt.opt-wrong{border-color:var(--red-b);background:var(--red-bg);}
-.opt.opt-wrong .opt-letter{background:var(--red-bg);color:var(--red);border-color:var(--red-b);}
+.options{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.opt{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:12px 14px;cursor:pointer;transition:border-color .15s,background .15s;font-size:12px;line-height:1.7;color:var(--text);display:flex;gap:10px;align-items:flex-start;}
+.opt:hover:not(.opt-off){border-color:var(--gold-dim);background:#1e1c16;}
+.opt-letter{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;background:var(--bg2);border:1px solid var(--border2);border-radius:3px;padding:1px 6px;flex-shrink:0;margin-top:1px;color:var(--text-dim);}
+.opt.opt-ok{border-color:var(--green-b);background:var(--green-bg);}
+.opt.opt-ok .opt-letter{background:var(--green-bg);color:var(--green);border-color:var(--green-b);}
+.opt.opt-err{border-color:var(--red-b);background:var(--red-bg);}
+.opt.opt-err .opt-letter{background:var(--red-bg);color:var(--red);border-color:var(--red-b);}
 .opt.opt-reveal{border-color:var(--green-b);}
-.opt.opt-disabled{cursor:default;}
+.opt.opt-off{cursor:default;}
 
-/* EXPLANATION */
-.explain-box{
-  background:var(--bg2);border:1px solid var(--border2);border-radius:8px;
-  padding:14px 16px;margin-bottom:14px;
-  font-size:12px;line-height:1.85;color:var(--text-dim);
-}
-.explain-box .ex-head{
-  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;
-  color:var(--gold);text-transform:uppercase;margin-bottom:8px;
-}
-.explain-box .strategy-tag{
-  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;
-  padding:2px 8px;border-radius:3px;margin-bottom:8px;letter-spacing:1px;
-}
+/* EXPLAIN */
+.explain-box{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:14px;margin-bottom:12px;font-size:12px;line-height:1.85;color:var(--text-dim);}
+.explain-box .ex-head{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.strategy-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:3px;margin-bottom:6px;letter-spacing:1px;}
 
-/* ACTION BTNS */
-.action-btn{
-  width:100%;background:var(--gold-bg);color:var(--gold);
-  border:1px solid var(--gold-dim);border-radius:8px;
-  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;
-  text-transform:uppercase;padding:13px;cursor:pointer;
-  transition:background .18s,border-color .18s;margin-bottom:8px;
-}
+/* BUTTONS */
+.action-btn{width:100%;background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-dim);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:13px;cursor:pointer;transition:background .18s,border-color .18s;margin-bottom:8px;}
 .action-btn:hover{background:#2a2010;border-color:var(--gold);}
 .action-btn.btn-green{background:var(--green-bg);color:var(--green);border-color:var(--green-b);}
-.action-btn.btn-green:hover{background:#142a1c;border-color:var(--green);}
+.action-btn.btn-green:hover{background:#142a1c;}
 .action-btn.btn-dim{background:var(--bg2);color:var(--text-dim);border-color:var(--border2);}
 
 /* RESULT */
-.result-hero{text-align:center;padding:30px 0 20px;}
-.result-hero .big-score{
-  font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:700;
-  color:var(--gold);line-height:1;margin-bottom:8px;
-}
-.result-hero .result-label{font-size:12px;color:var(--text-dim);letter-spacing:2px;}
-.result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:16px 0;}
+.result-hero{text-align:center;padding:28px 0 18px;}
+.big-score{font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:8px;}
+.result-label{font-size:12px;color:var(--text-dim);letter-spacing:2px;}
+.result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0;}
 .rg-item{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:12px;text-align:center;}
 .rg-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;}
 .rg-label{font-size:10px;color:var(--text-dim);margin-top:3px;}
-
-/* WRONG REVIEW */
-.wrong-item{
-  background:var(--surface);border:1px solid var(--border2);border-radius:8px;
-  padding:14px;margin-bottom:8px;font-size:12px;line-height:1.7;
-}
-.wrong-item .wi-q{color:var(--text);margin-bottom:8px;}
+.wrong-item{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:12px;margin-bottom:8px;font-size:12px;line-height:1.7;}
+.wrong-item .wi-q{color:var(--text);margin-bottom:6px;font-weight:700;}
 .wrong-item .wi-your{color:var(--red);margin-bottom:4px;}
 .wrong-item .wi-ans{color:var(--green);margin-bottom:6px;}
 .wrong-item .wi-exp{color:var(--text-dim);}
-
-/* DIVIDER */
-.divider{width:100%;height:1px;background:var(--border2);margin:16px 0;}
-
-/* TOPIC TAG */
-.topic-tag{
-  display:inline-block;
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  padding:2px 8px;border-radius:3px;letter-spacing:1px;margin-bottom:12px;
-}
-.tag-pronoun{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-b);}
-.tag-contrast{background:var(--red-bg);color:var(--red);border:1px solid var(--red-b);}
-.tag-example{background:var(--amber-bg);color:var(--amber);border:1px solid #4a2e08;}
-.tag-time{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-b);}
-.tag-summary{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-b);}
-.tag-topic{background:var(--surface);color:var(--text-dim);border:1px solid var(--border2);}
-
 </style>
 </head>
 <body>
 
-<!-- ══════════════ HOME ══════════════ -->
+<!-- HOME -->
 <div class="screen on" id="scr-home">
   <div class="site-hd">
-    <div class="eyebrow">學測英文攻略</div>
+    <div class="eyebrow">學測指考英文攻略</div>
     <h1>篇章結構解題訓練</h1>
-    <div class="sub">掌握邏輯脈絡 · 看穿句子關係 · 歷屆實戰練習</div>
+    <div class="sub">100–115年 · 指考6選5 · 學測5選4 · Priority解題順序</div>
   </div>
-
-  <!-- 解題策略入口 -->
-  <div style="width:100%;margin-bottom:24px;">
-    <div class="card" style="cursor:pointer;border-color:var(--gold-dim);" onclick="showScreen('scr-strategy')">
-      <div class="card-top-line"></div>
-      <div style="display:flex;align-items:center;gap:14px;">
-        <div style="font-size:28px;">🧭</div>
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:5px;">必讀策略</div>
-          <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;">五大解題策略完整教學</div>
-          <div style="font-size:11px;color:var(--text-dim);line-height:1.6;">代名詞指代・轉折對比・時序流程・舉例支撐・承上啟下</div>
-        </div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--gold-dim);margin-left:auto;">›</div>
-      </div>
-    </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="filterLessons('all')">全部（16）</button>
+    <button class="tab-btn" onclick="filterLessons('指考')">指考 100–110</button>
+    <button class="tab-btn" onclick="filterLessons('學測')">學測 111–115</button>
   </div>
-
-  <!-- 練習題組 -->
-  <div class="stage-section">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:var(--green)"></div>
-      <div class="stage-title">歷屆學測練習</div>
-      <div class="stage-progress" id="home-progress">0 / 12 完成</div>
-    </div>
-    <div class="lesson-grid" id="lesson-grid">
-      <!-- JS 動態生成 -->
-    </div>
-  </div>
+  <div class="lesson-grid" id="lesson-grid"></div>
 </div>
 
-<!-- ══════════════ STRATEGY ══════════════ -->
-<div class="screen" id="scr-strategy">
-  <button class="back-btn" onclick="showScreen('scr-home')">← 返回</button>
-
-  <div class="strategy-hero">
-    <div class="label">解題策略</div>
-    <h2>篇章結構五大攻略</h2>
-    <p>學測篇章結構考的是「句子與句子的關係」。掌握以下五種訊號，答題速度與正確率都能大幅提升。</p>
-  </div>
-
-  <!-- SOS 速查流程 -->
-  <div class="card" style="margin-bottom:20px;">
-    <div class="card-top-line"></div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:12px;">實戰操作流程</div>
-    <ul class="checklist">
-      <li><span class="ci">STEP 1</span><span>先快速瀏覽全部選項 (A)–(E/F)，圈出每個選項的<strong style="color:var(--text)">關鍵字</strong>（代名詞、人名、特定術語）</span></li>
-      <li><span class="ci">STEP 2</span><span>回到空格位置，仔細讀<strong style="color:var(--text)">前一句</strong>和<strong style="color:var(--text)">後一句</strong>，找邏輯線索</span></li>
-      <li><span class="ci">STEP 3</span><span>判斷空格功能：是<span class="hl-key">定義</span>、<span class="hl-signal">舉例</span>、<span class="hl-signal">轉折</span>、還是<span class="hl-answer">總結</span>？</span></li>
-      <li><span class="ci">STEP 4</span><span>確認後立即排除該選項，避免重複選</span></li>
-      <li><span class="ci">CHECK</span><span>填入後重讀完整段落，語意是否流暢？</span></li>
-    </ul>
-  </div>
-
-  <!-- Strategy 1: 代名詞指代 -->
-  <div class="step-card" onclick="toggleStep(this)">
-    <div class="step-head">
-      <div class="step-num" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-b);">1</div>
-      <div class="step-title">代名詞指代 &amp; 關鍵字重疊</div>
-      <div class="step-arrow">›</div>
-    </div>
-    <div class="step-body">
-      <p>最直接的解題方式：觀察空格附近是否有<strong style="color:var(--blue)">代名詞</strong>（they, this, it, such, these...）或<strong style="color:var(--blue)">重複的關鍵字</strong>。</p>
-      <p><strong style="color:var(--text)">規則一：</strong>空格<em>前面</em>的句子有某個名詞 → 後面句子用代名詞接 → 空格內容應包含那個名詞</p>
-      <p><strong style="color:var(--text)">規則二：</strong>空格<em>後面</em>有 they/this/it → 往選項找包含對應名詞的那句</p>
-      <div class="example-box">
-        <div class="ex-label">實例：怪人（Eccentrics）篇</div>
-        空格 31 後句：「<span class="hl-signal">They</span> often have more curiosity...」<br>
-        → They 指誰？→ 往選項找包含複數名詞的句子<br>
-        → 選項 (B)：「<span class="hl-answer">eccentrics</span> are more creative」✓<br>
-        <br>
-        空格 32 後：「<span class="hl-signal">They</span> live in a world of their own...」→ 同樣指 eccentrics<br>
-        → 選項 (E)：「<span class="hl-answer">eccentric people do not follow conventions</span>」✓
-      </div>
-      <div class="signal-group">
-        <span class="sig-pill sig-pronoun">they / them</span>
-        <span class="sig-pill sig-pronoun">this / these</span>
-        <span class="sig-pill sig-pronoun">it / its</span>
-        <span class="sig-pill sig-pronoun">such + 名詞</span>
-        <span class="sig-pill sig-pronoun">the + 重複名詞</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Strategy 2: 轉折對比 -->
-  <div class="step-card" onclick="toggleStep(this)">
-    <div class="step-head">
-      <div class="step-num" style="background:var(--red-bg);color:var(--red);border:1px solid var(--red-b);">2</div>
-      <div class="step-title">轉折 &amp; 對比訊號詞</div>
-      <div class="step-arrow">›</div>
-    </div>
-    <div class="step-body">
-      <p>轉折詞是最強烈的邏輯訊號。若空格<em>後面</em>有轉折詞，空格內容必定與後文<strong style="color:var(--red)">相反或對立</strong>。</p>
-      <p><strong style="color:var(--text)">規則：</strong>however / in contrast / on the other hand → 空格內容與後句意思相反</p>
-      <div class="example-box">
-        <div class="ex-label">實例：再生（Regeneration）篇</div>
-        空格 33 後：「Bidirectional regeneration, <span class="hl-signal">on the other hand</span>, refers to...」<br>
-        → "on the other hand" 說明後句是「另一種」再生方式<br>
-        → 空格 33 必定描述「<span class="hl-answer">第一種</span>」再生，即單向再生<br>
-        → 選項 (A)：「<span class="hl-answer">Scientists call this unidirectional regeneration</span>」✓
-      </div>
-      <div class="example-box">
-        <div class="ex-label">實例：聯覺（Synesthesia）篇</div>
-        空格 31 後：「In the early 1990s, <span class="hl-signal">however</span>, scientists noticed...」<br>
-        → however 暗示空格是 1990s 以前的「舊觀點」<br>
-        → 選項 (C)：「People... <span class="hl-answer">used to be accused of making their experiences up</span>」✓
-      </div>
-      <div class="signal-group">
-        <span class="sig-pill sig-contrast">however</span>
-        <span class="sig-pill sig-contrast">in contrast</span>
-        <span class="sig-pill sig-contrast">on the other hand</span>
-        <span class="sig-pill sig-contrast">instead</span>
-        <span class="sig-pill sig-contrast">yet / but</span>
-        <span class="sig-pill sig-contrast">despite / although</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Strategy 3: 舉例支撐 -->
-  <div class="step-card" onclick="toggleStep(this)">
-    <div class="step-head">
-      <div class="step-num" style="background:var(--amber-bg);color:var(--amber);border:1px solid #4a2e08;">3</div>
-      <div class="step-title">主題句 &amp; 舉例支撐</div>
-      <div class="step-arrow">›</div>
-    </div>
-    <div class="step-body">
-      <p><strong style="color:var(--text)">段首空格 =</strong> 通常是該段的<strong style="color:var(--amber)">主題句</strong>（大意/論點），後面的句子都是支撐或例子</p>
-      <p><strong style="color:var(--text)">段中空格，後有 for example / such as =</strong> 空格是概括句，後面是具體例子</p>
-      <div class="example-box">
-        <div class="ex-label">實例：角鬥士（Gladiators）篇</div>
-        空格 32 後面：列舉了奴隸、戰俘、志願者等各種來源<br>
-        → 後面是「多種來源的例子」→ 空格應是段落主題句<br>
-        → 選項 (A)：「<span class="hl-answer">Gladiators were recruited from different sources</span>」✓（歸納後文）
-      </div>
-      <div class="example-box">
-        <div class="ex-label">實例：加盟（Franchise）篇</div>
-        空格 34 前：「McDonald's 是知名品牌」<br>
-        → 後面需要支撐「品牌知名度有優勢」這個論點<br>
-        → 選項 (B)：「Research shows <span class="hl-answer">customers tend to choose a brand they recognize</span>」✓（研究數據支撐）
-      </div>
-      <div class="signal-group">
-        <span class="sig-pill sig-example">for example</span>
-        <span class="sig-pill sig-example">for instance</span>
-        <span class="sig-pill sig-example">such as</span>
-        <span class="sig-pill sig-example">specifically</span>
-        <span class="sig-pill sig-example">that is / i.e.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Strategy 4: 時序流程 -->
-  <div class="step-card" onclick="toggleStep(this)">
-    <div class="step-head">
-      <div class="step-num" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-b);">4</div>
-      <div class="step-title">時序 &amp; 流程連貫</div>
-      <div class="step-arrow">›</div>
-    </div>
-    <div class="step-body">
-      <p>傳記、歷史、科學過程等文章常有時間線索。若空格出現在「特定年代」附近，選項中的時間詞要能與前後銜接。</p>
-      <div class="example-box">
-        <div class="ex-label">實例：哥白尼（Copernicus）篇</div>
-        上文：「1530 年哥白尼完成 De Revolutionibus」<br>
-        空格 32<br>
-        下文：「<span class="hl-signal">Copernicus died in 1543</span>...」<br>
-        → 需要說明這本書的出版時間（介於 1530 和 1543 之間）<br>
-        → 選項 (B)：「The book wasn't published <span class="hl-answer">until two months before his death</span>」✓（完美銜接 1543）
-      </div>
-      <div class="example-box">
-        <div class="ex-label">實例：法國大革命篇</div>
-        空格 31 在第一段末 → 後續第二段講「麵包」、第三段講「鹽」<br>
-        → 空格需要同時預告麵包與鹽，作為「承上啟下」<br>
-        → 選項 (F)：「<span class="hl-answer">bread and salt... were at the heart of the conflict</span>」✓
-      </div>
-      <div class="signal-group">
-        <span class="sig-pill sig-time">in + 年代</span>
-        <span class="sig-pill sig-time">then / later</span>
-        <span class="sig-pill sig-time">since then</span>
-        <span class="sig-pill sig-time">after that</span>
-        <span class="sig-pill sig-time">eventually</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Strategy 5: 承上啟下 -->
-  <div class="step-card" onclick="toggleStep(this)">
-    <div class="step-head">
-      <div class="step-num" style="background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-b);">5</div>
-      <div class="step-title">段末承上啟下</div>
-      <div class="step-arrow">›</div>
-    </div>
-    <div class="step-body">
-      <p>空格若位於<strong style="color:var(--purple)">段落結尾</strong>，功能通常是：總結本段 + 引出下一段主題。解題時要同時看<em>本段的主題</em>和<em>下一段的第一句</em>。</p>
-      <div class="example-box">
-        <div class="ex-label">實例：鋰電池篇</div>
-        第三段開頭：「<span class="hl-signal">It is fragile and requires a protection circuit...</span>」<br>
-        → 前面需要一句「引入缺點」的句子<br>
-        → 選項 (B)：「Despite its overall advantages, <span class="hl-answer">the lithium-ion battery has its drawbacks</span>」✓（段首主題句，引出後面的缺點列表）
-      </div>
-      <p style="color:var(--text-dim);"><strong style="color:var(--text);">注意：</strong>如果一個選項讀起來像「很好的段落結尾」但後文方向突然改變，那它很可能是段末承接句，需要往下一段尋找確認。</p>
-    </div>
-  </div>
-
-  <div style="height:16px;"></div>
-  <button class="start-btn" onclick="showScreen('scr-home')">← 回主頁開始練習</button>
-</div>
-
-<!-- ══════════════ QUIZ ══════════════ -->
+<!-- QUIZ -->
 <div class="screen" id="scr-quiz">
   <button class="back-btn" onclick="confirmBack()">← 返回</button>
-  <div class="quiz-header">
-    <div class="quiz-title" id="quiz-lesson-title">載入中...</div>
-    <div class="quiz-score" id="quiz-score-display">0 / 0</div>
+  <div class="quiz-hd">
+    <div class="quiz-title" id="q-title">載入中</div>
+    <div class="quiz-meta" id="q-meta">0/0</div>
   </div>
   <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="mode-priority" onclick="setMode('priority')">🎯 Priority 模式</button>
+    <button class="mode-btn" id="mode-seq" onclick="setMode('seq')">📋 題號順序</button>
+  </div>
+
   <div id="quiz-content"></div>
 </div>
 
-<!-- ══════════════ RESULT ══════════════ -->
+<!-- RESULT -->
 <div class="screen" id="scr-result">
   <div class="result-hero">
     <div class="big-score" id="res-score">—</div>
     <div class="result-label" id="res-label">得分</div>
   </div>
   <div class="result-grid">
-    <div class="rg-item"><div class="rg-num" id="res-correct" style="color:var(--green)">—</div><div class="rg-label">答對</div></div>
-    <div class="rg-item"><div class="rg-num" id="res-wrong" style="color:var(--red)">—</div><div class="rg-label">答錯</div></div>
+    <div class="rg-item"><div class="rg-num" id="res-ok" style="color:var(--green)">—</div><div class="rg-label">答對</div></div>
+    <div class="rg-item"><div class="rg-num" id="res-err" style="color:var(--red)">—</div><div class="rg-label">答錯</div></div>
     <div class="rg-item"><div class="rg-num" id="res-total" style="color:var(--gold)">—</div><div class="rg-label">總題數</div></div>
   </div>
   <div id="res-wrong-review"></div>
-  <button class="action-btn btn-green" onclick="retryLesson()">重新練習本題組</button>
-  <button class="action-btn btn-dim" onclick="showScreen('scr-home')">回主頁</button>
+  <button class="action-btn btn-green" onclick="retryLesson()">重新練習</button>
+  <button class="action-btn btn-dim" onclick="goHome()">← 回主頁</button>
+  <button class="action-btn btn-dim" id="res-reset-btn" style="font-size:10px;opacity:.5;margin-top:4px;">清除所有進度</button>
 </div>
 
 <script>
-// ══════════════════════════════════════════════
-// DATA: 歷屆篇章結構題組
-// ══════════════════════════════════════════════
 const LESSONS = [
   {
-    id: 0,
-    year: '100學測',
-    topic: '怪人（Eccentrics）',
-    tag: 'pronoun',
-    tagLabel: '代名詞指代',
-    passage: `Eccentrics are people who have an unusual or odd personality, set of beliefs, or behavior pattern. They may or may not comprehend the standards for normal behavior in their culture. They simply don't care about the society's disapproval of their habits or beliefs.
-
-Once considered socially unacceptable, eccentric people have been found to possess some positive characteristics. [31] They often have more curiosity about the world and, in many cases, are contentedly obsessed by hobbies and interests. [32] They live in a world of their own and do not worry about what others think of them. So they are usually less restricted and therefore more carefree in forming new ideas.
-
-[33] Statistics show they visit their doctors less—about once in eight to nine years, which is 20 times less than the average person. This could be partly due to their innate traits such as humor and happiness. [34] This may explain why eccentrics are, on the whole, healthier.
-
-Psychologists therefore suggest that we pay attention to those who do not conform. It could be our aunt who has been raising pet lizards. [35] Their crazy hobby or strange sense of humor is what keeps them going. Eccentric people may seem odd, but they will likely live a happier and healthier life because they enjoy what they are doing.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '後句以 "They often have more curiosity" 開頭，They 指代誰？往選項找包含複數名詞的句子。',
-        strategy: 'pronoun',
-        strategyLabel: '代名詞指代',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'Eccentrics are also found to be healthier.',
-          'According to a recent study in England, eccentrics are more creative.',
-          'Or it could be our best friend\'s brother who wears shorts to a formal dance.',
-          'People may have eccentric taste in clothes, or have eccentric hobbies.',
-          'Psychologists also find that eccentric people do not follow conventions.'
-        ],
-        answer: 'B',
-        explanation: '後句 "They often have more curiosity" 中的 They 需要前句提供指代對象。選項 (B) 包含 "eccentrics"，正是 They 所指的對象，且「更有創意」的論點由後句的「更多好奇心」加以支撐。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '後句 "They live in a world of their own and do not worry about what others think" — They 又在指誰？且後句描述「不在乎他人想法」，空格應有類似的脈絡。',
-        strategy: 'pronoun',
-        strategyLabel: '代名詞指代',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'Eccentrics are also found to be healthier.',
-          'According to a recent study in England, eccentrics are more creative.',
-          'Or it could be our best friend\'s brother who wears shorts to a formal dance.',
-          'People may have eccentric taste in clothes, or have eccentric hobbies.',
-          'Psychologists also find that eccentric people do not follow conventions.'
-        ],
-        answer: 'E',
-        explanation: '後句「They live in a world of their own」呼應「不遵從慣例」的概念。選項 (E) "eccentric people do not follow conventions"（不遵守慣例）與後句的「活在自己的世界、不在乎他人想法」語意連貫，且提供了 They 的指代。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '空格在段首。後句 "Statistics show they visit their doctors less" — 這段的主題是什麼？應是「怪人在某方面的特點」的主題句。',
-        strategy: 'topic',
-        strategyLabel: '段首主題句',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'Eccentrics are also found to be healthier.',
-          'According to a recent study in England, eccentrics are more creative.',
-          'Or it could be our best friend\'s brother who wears shorts to a formal dance.',
-          'People may have eccentric taste in clothes, or have eccentric hobbies.',
-          'Psychologists also find that eccentric people do not follow conventions.'
-        ],
-        answer: 'A',
-        explanation: '空格在第三段開頭，後文說「看醫生次數少」、「可能源於幽默感和快樂」，整段的主題是「怪人比較健康」。選項 (A) "Eccentrics are also found to be healthier" 正是這段的主題句，"also" 連接前段提到的其他正面特質。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '後句 "This may explain why eccentrics are healthier" — This 指代什麼？往選項找能解釋「為什麼怪人更健康」的機制。',
-        strategy: 'pronoun',
-        strategyLabel: '代名詞指代',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'Eccentrics are also found to be healthier.',
-          'According to a recent study in England, eccentrics are more creative.',
-          'Or it could be our best friend\'s brother who wears shorts to a formal dance.',
-          'People may have eccentric taste in clothes, or have eccentric hobbies.',
-          'Psychologists also find that eccentric people do not follow conventions.'
-        ],
-        answer: 'F',
-        explanation: '後句 "This may explain why eccentrics are, on the whole, healthier" 中的 This 需要前句提供原因。選項 (F)（若有）提到免疫系統的提升。注意：原題有(F) "Such personal traits are found to play an important role in boosting the body\'s immune system." — 這說明個人特質有助免疫，後句的 This 就指這個發現，順理成章解釋了「為何更健康」。'
-      },
-      {
-        num: 35, blank: 35,
-        hint: '前句「It could be our aunt who has been raising pet lizards.」列舉了一個例子，空格應是另一個類似的例子，且後句說「Their crazy hobby...」繼續談到這些人。',
-        strategy: 'example',
-        strategyLabel: '舉例支撐',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'Eccentrics are also found to be healthier.',
-          'According to a recent study in England, eccentrics are more creative.',
-          'Or it could be our best friend\'s brother who wears shorts to a formal dance.',
-          'People may have eccentric taste in clothes, or have eccentric hobbies.',
-          'Psychologists also find that eccentric people do not follow conventions.'
-        ],
-        answer: 'C',
-        explanation: '前句以「養蜥蜴的阿姨」作為怪人的例子，空格應以 "Or it could be..." 的句型列舉另一個例子，與前句形成平行結構。選項 (C) "Or it could be our best friend\'s brother who wears shorts to a formal dance" 完美延續「列舉生活中的怪人」的脈絡。'
-      }
+    id: '100指考',
+    year: '100', etype: '指考',
+    topic: "校園霸凌",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "The effect of bullying can be serious and even lead to tragedy.\nUnfortunately, it is still a mostly unresearched area.\n\n31 That year two shotgun-wielding students, both of whom had been\nidentified as gifted and who had been bullied for years, killed 13\npeople, wounded 24 and then committed suicide. A year later an analysis\nby the US government found that bullying played a major role in more\nthan two-thirds of the campus violence.\n\n32 Numerous dictators and invaders throughout history have tried to\njustify their bullying behavior by claiming that they themselves were\nbullied. 33 Although it is no justification for bullying, many of the\nworst humans in history have indeed been bullies and victims of\nbullying.\n\nSince bullying is mostly ignored, it may provide an important clue in\ncrowd behavior and passer-by behavior. 34 Many of them have suggested\nbullying as one of the reasons of this decline in emotional sensitivity\nand acceptance of violence as normal. When someone is bullied, it is not\nonly the bully and the victim who are becoming less sensitive to\nviolence. 35 In this sense, bullying affects\n\nnot only the bullied but his friends and classmates and the whole\nsociety.",
+    options: [
+        {k:'A', text:"Hitler, for example, is claimed to have been a victim of bullying in his childhood."}
+        {k:'B', text:"Campus bullying is becoming a serious problem in some high schools in big cities."}
+        {k:'C', text:"The friends and classmates of the bully and the victim may accept the violence as normal."}
+        {k:'D', text:"Research indicates that bullying may form a chain reaction and the victim often becomes the bully."}
+        {k:'E', text:"Psychologists have been puzzled by the inactivity of crowds and bystanders in urban centers when crimes occur in crowded places."}
+        {k:'F', text:"The link between bullying and school violence has attracted increasing attention since the 1999 tragedy at a Colorado high school."}
+    ],
+    answers: ["F", "D", "A", "E", "C"],
+    priority: [
+        {num:31,order:1,type:"時序掛鉤",hook:"後句 \"That year\" — That year指哪一年？前面需要先提到某個事件年份",signal:"選(F)：mentions 1999 tragedy → 確立That year的指代"}
+        {num:35,order:2,type:"代名詞掛鉤",hook:"後句 \"In this sense, bullying affects not only the bullied but his friends\"",signal:"選(C)：friends and classmates...accept violence as normal（直接呼應後句）"}
+        {num:34,order:3,type:"代名詞掛鉤",hook:"後句 \"Many of them have suggested bullying...\" — them指誰？",signal:"選(E)：Psychologists...puzzled by inactivity of crowds（they = psychologists）"}
+        {num:32,order:4,type:"主題句",hook:"後文列舉歷史上的霸凌者（dictators, invaders）",signal:"選(D)：Research...bullying forms chain reaction（引出後文霸凌者也曾是受害者的模式）"}
+        {num:33,order:5,type:"排除消去",hook:"剩A：Hitler被霸凌的例子，接在dictators後面",signal:"選(A)：Hitler...victim of bullying（具體舉例支撐前句）"}
     ]
   },
   {
-    id: 1,
-    year: '101學測',
-    topic: '鋰離子電池',
-    tag: 'contrast',
-    tagLabel: '轉折對比',
-    passage: `Since the early 1990s, the lithium-ion battery has been the most suitable battery for portable electronic equipment. Today, they're commonly used for cellphones, computers, tablets, digital cameras, and other devices.
-
-Lithium-ion batteries have nearly twice the energy density of traditional nickel cadmium batteries. [31] This feature has important implications for cellphones and computers, because it makes these items more portable for consumers.
-
-[32] Lithium-ion batteries retain no "memory" of their power capacity from previous charging cycles. Thus they require no scheduled cycling and can be fully re-fueled to their maximum capacity during each charging cycle. Other rechargeable battery types, in contrast, retain information from previous charging cycles, which wastes valuable storage space.
-
-[33] It is fragile and requires a protection circuit to maintain safe operation. A high load could overheat the pack and safety might be jeopardized. [34] After 2-3 years of use, the pack often becomes unserviceable due to a large voltage drop caused by high internal resistance.
-
-It should be noted, however, that manufacturers are constantly making improvements on lithium-ion batteries. [35] With such rapid progress, the use of lithium-ion batteries will certainly expand further.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '前句提到「鋰電池的能量密度幾乎是傳統電池的兩倍」，後句的 "This feature" 指代這個特性。空格應解釋這個特性代表什麼。',
-        strategy: 'pronoun',
-        strategyLabel: '代名詞指代',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'The lithium-ion battery is also a low maintenance battery.',
-          'Despite its overall advantages, the lithium-ion battery has its drawbacks.',
-          'New and enhanced chemical combinations are introduced every six months or so.',
-          'Attempts to develop rechargeable lithium-ion batteries failed due to memory problems.',
-          'That is, they carry more power in a smaller unit, helping to reduce overall weight and size.'
-        ],
-        answer: 'E',
-        explanation: '後句 "This feature" 指代空格內容。選項 (E) "That is, they carry more power in a smaller unit, helping to reduce overall weight and size" 正是在解釋「能量密度高」的意思——更小的體積儲存更多電力，因此能讓產品更輕便。"That is" 是典型的解釋用語。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '這是新段落的開頭。後文介紹鋰電池「不會記住充電容量」的特性，並與其他電池對比。空格應是這段的主題句。',
-        strategy: 'topic',
-        strategyLabel: '段首主題句',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'The lithium-ion battery is also a low maintenance battery.',
-          'Despite its overall advantages, the lithium-ion battery has its drawbacks.',
-          'New and enhanced chemical combinations are introduced every six months or so.',
-          'Attempts to develop rechargeable lithium-ion batteries failed due to memory problems.',
-          'That is, they carry more power in a smaller unit, helping to reduce overall weight and size.'
-        ],
-        answer: 'A',
-        explanation: '後文整段描述鋰電池「不需要定期放電、可充滿電」等低維護特性。選項 (A) "The lithium-ion battery is also a low maintenance battery"（低維護電池）正好是這段的主題句，"also" 承接前段提到的其他優點。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '後句 "It is fragile..." 突然開始談缺點（脆弱、需要保護電路）。空格需要引入「轉折」，從優點轉到缺點。',
-        strategy: 'contrast',
-        strategyLabel: '轉折對比',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'The lithium-ion battery is also a low maintenance battery.',
-          'Despite its overall advantages, the lithium-ion battery has its drawbacks.',
-          'New and enhanced chemical combinations are introduced every six months or so.',
-          'Attempts to develop rechargeable lithium-ion batteries failed due to memory problems.',
-          'That is, they carry more power in a smaller unit, helping to reduce overall weight and size.'
-        ],
-        answer: 'B',
-        explanation: '後文「容易損壞、需要保護電路、高負載會過熱」都是缺點。選項 (B) "Despite its overall advantages, the lithium-ion battery has its drawbacks" 完美作為這段的主題句，"Despite" 是轉折訊號，引出後文的缺點列表。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '前句提到「高負載可能導致過熱，安全性受威脅」，後句說「2-3年後因內阻升高導致電壓下降」。空格應是另一個缺點，連結兩句。',
-        strategy: 'example',
-        strategyLabel: '缺點列舉',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'The lithium-ion battery is also a low maintenance battery.',
-          'Despite its overall advantages, the lithium-ion battery has its drawbacks.',
-          'New and enhanced chemical combinations are introduced every six months or so.',
-          'Attempts to develop rechargeable lithium-ion batteries failed due to memory problems.',
-          'That is, they carry more power in a smaller unit, helping to reduce overall weight and size.',
-          'Another downside is the increase of the internal resistance that occurs with cycling and aging.'
-        ],
-        answer: 'F',
-        explanation: '後句提到「2-3年後因高內阻導致電壓下降」，所以空格應先提出「內阻增加」這個問題。選項 (F) "Another downside is the increase of the internal resistance that occurs with cycling and aging"（另一個缺點是內阻隨使用和老化而增加）正好引出後句的電壓下降結果，且 "Another downside" 承接前段的缺點列舉。'
-      },
-      {
-        num: 35, blank: 35,
-        hint: '前句說「製造商持續改進」，後句說「隨著這樣的快速進步，鋰電池的使用必將進一步擴展」。空格應是改進的具體例子。',
-        strategy: 'example',
-        strategyLabel: '舉例支撐',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'The lithium-ion battery is also a low maintenance battery.',
-          'Despite its overall advantages, the lithium-ion battery has its drawbacks.',
-          'New and enhanced chemical combinations are introduced every six months or so.',
-          'Attempts to develop rechargeable lithium-ion batteries failed due to memory problems.',
-          'That is, they carry more power in a smaller unit, helping to reduce overall weight and size.',
-          'Another downside is the increase of the internal resistance that occurs with cycling and aging.'
-        ],
-        answer: 'C',
-        explanation: '前句「製造商不斷改進」需要具體說明，後句「rapid progress」呼應空格的內容。選項 (C) "New and enhanced chemical combinations are introduced every six months or so"（每半年左右推出新的改良化學組合）提供了具體的改進例子，且與後句的 "such rapid progress" 形成完美銜接。'
-      }
+    id: '101指考',
+    year: '101', etype: '指考',
+    topic: "廣告的本質",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "All advertising includes an attempt to persuade. 31 Even if an\nadvertisement claims to be purely informational, it still has persuasion\nat its core. The ad informs the consumers with one purpose: to get the\nconsumer to like the brand and, on that basis, to eventually buy the\nbrand. Without this persuasive intent, communication about a product\nmight be news, but it would not be advertising.\n\nAdvertising can be persuasive communication not only about a product but\nalso an idea or a person.\n\n32 Although political ads are supposed to be concerned with the public\nwelfare, they are paid for and they all have a persuasive intent. 33 A\nBush campaign ad, for instance, did not ask anyone to buy anything, yet\nit attempted to persuade American citizens to view George Bush\nfavorably. 34 Critics of President Clinton’s health care plan used\nadvertising to influence lawmakers and defeat the government’s plan.\n\n35 For instance, the international organization Greenpeace uses\nadvertising to get their message out. In the ads, they warn people about\nserious pollution problems and the urgency of protecting the\nenvironment. They, too, are selling something and trying to make a\npoint.",
+    options: [
+        {k:'A', text:"Political advertising is one example."}
+        {k:'B', text:"To put it another way, ads are communication designed to get someone to do something."}
+        {k:'C', text:"Advertising can be the most important source of income for the media through which it is conducted."}
+        {k:'D', text:"They differ from commercial ads in that political ads “sell” candidates rather than commercial goods."}
+        {k:'E', text:"Aside from campaign advertising, political advertising is also used to persuade people to support or oppose proposals."}
+        {k:'F', text:"In addition to political parties, environmental groups and human rights organizations also buy advertising to persuade people to accept their way of thinking."}
+    ],
+    answers: ["B", "A", "D", "E", "F"],
+    priority: [
+        {num:31,order:1,type:"代名詞掛鉤",hook:"後句 \"The ad informs...to get the consumer to like the brand\" — 需要前句定義廣告的目的",signal:"選(B)：ads are communication designed to get someone to do something（定義廣告）"}
+        {num:32,order:2,type:"主題句",hook:"後文談政治廣告（political ads, Bush campaign）",signal:"選(A)：Political advertising is one example（引出政治廣告這個子主題）"}
+        {num:33,order:3,type:"關鍵字重疊",hook:"前句 political ads are paid for，後句 Bush campaign ad",signal:"選(D)：They differ from commercial ads...sell candidates（they = political ads，對比商業廣告）"}
+        {num:34,order:4,type:"舉例延伸",hook:"前Bush例子，後Clinton例子，空格在中間連接兩個例子",signal:"選(E)：Aside from campaign advertising...also used to persuade（延伸到更廣的政治廣告類型）"}
+        {num:35,order:5,type:"排除消去",hook:"後句 Greenpeace uses advertising — 剩下(F)",signal:"選(F)：environmental groups...also buy advertising（引出環保團體這個例子，Greenpeace是具體說明）"}
     ]
   },
   {
-    id: 2,
-    year: '102學測',
-    topic: '加盟連鎖（Franchise）',
-    tag: 'example',
-    tagLabel: '主題句舉例',
-    passage: `Starting a business on one's own can be quite challenging and costly. To reduce the risks involved in starting a business from scratch, many people buy a franchise instead. [31] Under the license, the individual acquires the right to use the big company's brand name and agrees to sell its products.
-
-The concept of the franchise dates back to the 19th century in the U.S. [32] Then, in the 1930s, Howard Johnson restaurants skyrocketed in popularity, paving the way for restaurant chains and the subsequent franchises that would define the unprecedented rise of the American fast-food industry.
-
-There are many advantages to investing in a franchise. One of the benefits is the ready-made business operation. [33] Depending on the franchise, the franchisor company may offer support in training and financial planning. To new business owners, the most recognized advantage of a franchise is perhaps the well-established brand name of the franchisor such as that of McDonald's. [34]
-
-Disadvantages include heavy start-up costs as well as ongoing royalty costs on the part of the franchisee. [35] Other disadvantages include lack of territory control or creativity with one's own business.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '前句「很多人購買 franchise」，後句「Under the license, the individual acquires the right...」。空格應定義什麼是 franchise（授權合約）。',
-        strategy: 'definition',
-        strategyLabel: '定義說明',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Whether a franchise is profitable or not depends largely on the nature of the business.',
-          'Research has shown that customers tend to choose a brand they recognize over one they don\'t.',
-          'A franchise comes with a built-in business formula including products, services, and even employee uniforms.',
-          'Moreover, the franchisee is given no right to renew or extend the franchise after the term of the contract.',
-          'The most famous example was Isaac Singer, who created franchises to distribute his sewing machines to larger areas.',
-          'A franchise is a license issued by a large, usually well-known, company to an individual or a small business owner.'
-        ],
-        answer: 'F',
-        explanation: '後句 "Under the license" 中的 "the license" 需要前句先提過 license。選項 (F) "A franchise is a license issued by a large company to an individual" 定義了 franchise 就是一種授權（license），使後句的 "Under the license" 有所指代。這是典型的「定義＋說明」結構。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '前句「加盟概念源於19世紀」，後句「Then, in the 1930s, Howard Johnson...」。Then 暗示空格應描述「在1930年代之前」的某個事件。',
-        strategy: 'time',
-        strategyLabel: '時序連貫',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Whether a franchise is profitable or not depends largely on the nature of the business.',
-          'Research has shown that customers tend to choose a brand they recognize over one they don\'t.',
-          'A franchise comes with a built-in business formula including products, services, and even employee uniforms.',
-          'Moreover, the franchisee is given no right to renew or extend the franchise after the term of the contract.',
-          'The most famous example was Isaac Singer, who created franchises to distribute his sewing machines to larger areas.',
-          'A franchise is a license issued by a large, usually well-known, company to an individual or a small business owner.'
-        ],
-        answer: 'E',
-        explanation: '前句提到加盟概念「源於19世紀」，後句 "Then, in the 1930s" 繼續時間線。空格需要提供19世紀的具體例子。選項 (E) "The most famous example was Isaac Singer, who created franchises to distribute his sewing machines" 正是19世紀的加盟先例，完美填補了「19世紀概念起源」→「20世紀1930年代發展」之間的歷史脈絡。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '前句說加盟優點之一是「現成的商業運作」，後句說「依加盟主不同，可能提供培訓和財務規劃支援」。空格應進一步說明「現成商業運作」包含什麼。',
-        strategy: 'example',
-        strategyLabel: '舉例支撐',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Whether a franchise is profitable or not depends largely on the nature of the business.',
-          'Research has shown that customers tend to choose a brand they recognize over one they don\'t.',
-          'A franchise comes with a built-in business formula including products, services, and even employee uniforms.',
-          'Moreover, the franchisee is given no right to renew or extend the franchise after the term of the contract.',
-          'The most famous example was Isaac Singer, who created franchises to distribute his sewing machines to larger areas.',
-          'A franchise is a license issued by a large, usually well-known, company to an individual or a small business owner.'
-        ],
-        answer: 'C',
-        explanation: '前句說「現成的商業運作」，後句繼續說明加盟主的支援服務。選項 (C) "A franchise comes with a built-in business formula including products, services, and even employee uniforms" 具體說明了「現成商業模式」包含什麼，與後句的「培訓和財務規劃支援」形成完整的優點描述。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '前句提到「最廣為人知的優點是知名品牌，例如麥當勞」，空格應提供支撐「品牌知名度是優點」的論據。',
-        strategy: 'support',
-        strategyLabel: '論點支撐',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Whether a franchise is profitable or not depends largely on the nature of the business.',
-          'Research has shown that customers tend to choose a brand they recognize over one they don\'t.',
-          'A franchise comes with a built-in business formula including products, services, and even employee uniforms.',
-          'Moreover, the franchisee is given no right to renew or extend the franchise after the term of the contract.',
-          'The most famous example was Isaac Singer, who created franchises to distribute his sewing machines to larger areas.',
-          'A franchise is a license issued by a large, usually well-known, company to an individual or a small business owner.'
-        ],
-        answer: 'B',
-        explanation: '前句論點：「知名品牌是加盟的最大優點（如麥當勞）」。空格需要「研究數據或原因」來支撐這個論點。選項 (B) "Research has shown that customers tend to choose a brand they recognize over one they don\'t" 提供了研究佐證，完美支撐「品牌知名度有助於吸引顧客」的主張。'
-      },
-      {
-        num: 35, blank: 35,
-        hint: '前句說「start-up costs 和 royalty costs 是缺點」，後句說「其他缺點包括缺乏地域控制和創意」。空格應是另一個具體的缺點（費用相關）。',
-        strategy: 'example',
-        strategyLabel: '缺點列舉',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Whether a franchise is profitable or not depends largely on the nature of the business.',
-          'Research has shown that customers tend to choose a brand they recognize over one they don\'t.',
-          'A franchise comes with a built-in business formula including products, services, and even employee uniforms.',
-          'Moreover, the franchisee is given no right to renew or extend the franchise after the term of the contract.',
-          'The most famous example was Isaac Singer, who created franchises to distribute his sewing machines to larger areas.',
-          'A franchise is a license issued by a large, usually well-known, company to an individual or a small business owner.'
-        ],
-        answer: 'D',
-        explanation: '前句提到費用上的缺點（高額啟動費和版稅），後句說「其他缺點」。空格應在費用缺點後補充合約上的限制。選項 (D) "Moreover, the franchisee is given no right to renew or extend the franchise after the term of the contract"（而且加盟者在合約期滿後無權續約）是另一個重要的缺點，"Moreover" 連接前句的費用缺點。'
-      }
+    id: '102指考',
+    year: '102', etype: '指考',
+    topic: "麵包師的故事",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "In the Dutch colonial town later known as Albany, New York, there lived\na baker, Van Amsterdam, who was as honest as he could be. He took great\ncare to give his customers exactly what they paid for—not more and not\nless.\n\nOne Saint Nicholas Day morning, when the baker was just ready for\nbusiness, the door of his shop flew open. 31 She asked for a dozen of\nthe baker’s Saint Nicholas cookies. Van Amsterdam counted out twelve\ncookies. But the woman insisted that a dozen is thirteen. Van Amsterdam\nwas not a man to bear foolishness. He refused. The woman turned to go\nwithout the cookies but she stopped at the door, saying, “Van Amsterdam!\nHowever honest you may be, your heart is small and your fist is tight.”\nThen she was gone.\n\n32 His bread rose too high or not at all. His pies were sour or too\nsweet. His cookies were burnt or doughy. His customers soon noticed the\ndifference and slipped away.\n\nA year passed. The baker grew poorer and poorer. Finally, on the day\nbefore Saint Nicholas Day, no customer came to his shop. 33\n\nThat night, the baker had a dream. He saw Saint Nicholas pulling out\ngifts from his baskets for a crowd of happy children. No matter how many\npresents Nicholas handed out, there were always more to give. Then\nsomehow, Saint Nicholas turned into the old woman with the long black\nshawl!\n\n34 He suddenly realized that he always gave his customers exactly what\nthey paid for, “But why not give more?”\n\nThe next morning, on Saint Nicholas Day, the baker rose early to make\ncookies. And to his surprise, the cookies were as fine as they could be.\nWhen he had just finished, the old woman appeared at his door again. She\nasked for a dozen of Van Amsterdam’s Saint Nicholas cookies. 35\n\nWhen people heard he counted thirteen as a dozen, he had more customers\nthan ever and became wealthy. The practice then spread to other towns as\na common custom.",
+    options: [
+        {k:'A', text:"Van Amsterdam awoke with a start."}
+        {k:'B', text:"In walked an old woman wrapped in a long black shawl."}
+        {k:'C', text:"The more he took from the baskets, the more they seemed to hold."}
+        {k:'D', text:"From that day, everything went wrong in Van Amsterdam’s bakery."}
+        {k:'E', text:"In great excitement, Van Amsterdam counted out twelve cookies—and one more."}
+        {k:'F', text:"Staring at his unsold Saint Nicholas cookies, he prayed that Saint Nicholas could help him."}
+    ],
+    answers: ["B", "D", "F", "A", "E"],
+    priority: [
+        {num:31,order:1,type:"代名詞掛鉤",hook:"後句 \"She asked for a dozen...\" — She是誰？前面必須先出現一個女性",signal:"選項需引入一個走進麵包店的女人"}
+        {num:35,order:2,type:"因果掛鉤",hook:"後句 \"When people heard he counted thirteen as a dozen, he had more customers\"",signal:"老婦人再度出現，baker此次答應給13個"}
+        {num:33,order:3,type:"時序掛鉤",hook:"前句 \"no customer came\"，後句 \"That night, the baker had a dream\"",signal:"選(需要連接無客上門→做夢的轉折)"}
+        {num:34,order:4,type:"因果掛鉤",hook:"後句 \"He suddenly realized...why not give more?\"",signal:"夢境帶來頓悟"}
+        {num:32,order:5,type:"排除消去",hook:"前句老婦詛咒，後文烘焙全失敗",signal:"選(連接詛咒→烘焙失敗的因果)"}
     ]
   },
   {
-    id: 3,
-    year: '103學測',
-    topic: '生物再生（Regeneration）',
-    tag: 'contrast',
-    tagLabel: '轉折對比',
-    passage: `One of the most difficult things for a human to face is the loss of a limb. If a person loses an arm or a leg, he/she must be fitted with an artificial limb.
-
-The situation is very different for a starfish. If a starfish loses an arm, it can grow a new one.
-[31] Snails can even regrow their heads—imagine what the world would be like if humans could do that. But we can't. Nor can we grow new limbs or even fingers. That's why scientists are studying animals that can regrow body parts, that is, regenerate. [32]
-
-Many different kinds of animals show some form of regeneration. Most of them are, however, limited to the sort a lizard is capable of, like regrowing a lost tail. A cockroach can grow back a missing limb, but the limb itself can't generate a new cockroach. [33] Bidirectional regeneration, on the other hand, refers to a situation in which splitting of an animal will result in separate fully functional animals. [34] Cut a hydra in half, and you'll get two hydras. Cut it into four pieces, and you'll get four.
-
-[35] A single one can be cut into hundreds of pieces and each will grow back into a whole in a week or so. Because of this remarkable ability, one planarian can be created over and over, giving it a sort of immortality.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '前句說「海星失去手臂可以長回來」，後句說「蝸牛甚至可以重新長出頭部」。空格應列舉另一種能再生的動物，形成平行結構。',
-        strategy: 'example',
-        strategyLabel: '平行列舉',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Scientists call this unidirectional regeneration.',
-          'Humans aren\'t completely without regenerative talents.',
-          'The same thing happens for lobsters, salamanders, and many other animals.',
-          'When it comes to regeneration, few animals can equal the magic of the planarian.',
-          'This type of regeneration is demonstrated in a few animals, such as hydras and sea stars.',
-          'They hope that this line of research will make regeneration possible in humans someday.'
-        ],
-        answer: 'C',
-        explanation: '前句「海星能再生手臂」，後句「蝸牛能再生頭部」，中間需要另一個例子延續列舉。選項 (C) "The same thing happens for lobsters, salamanders, and many other animals"（龍蝦、蠑螈等動物也有同樣能力）完美填入這個位置，"The same thing" 承接海星的例子，同時為後面的蝸牛範例打好基礎。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '前句說「科學家研究能再生的動物」，這是段末。後段開頭說「很多種動物有某種形式的再生」。空格應說明研究的目的，作為承上啟下。',
-        strategy: 'bridge',
-        strategyLabel: '承上啟下',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Scientists call this unidirectional regeneration.',
-          'Humans aren\'t completely without regenerative talents.',
-          'The same thing happens for lobsters, salamanders, and many other animals.',
-          'When it comes to regeneration, few animals can equal the magic of the planarian.',
-          'This type of regeneration is demonstrated in a few animals, such as hydras and sea stars.',
-          'They hope that this line of research will make regeneration possible in humans someday.'
-        ],
-        answer: 'F',
-        explanation: '前句「科學家研究能再生的動物」，後段轉向列舉各種動物的再生能力。選項 (F) "They hope that this line of research will make regeneration possible in humans someday"（他們希望這條研究路線有朝一日能讓人類實現再生）說明了研究動機，同時過渡到後文的具體研究內容。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '後句以 "Bidirectional regeneration, on the other hand..." 開頭。"on the other hand" 是強烈的對比訊號，暗示空格談的是「另一種」——也就是單向再生。',
-        strategy: 'contrast',
-        strategyLabel: '轉折對比',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Scientists call this unidirectional regeneration.',
-          'Humans aren\'t completely without regenerative talents.',
-          'The same thing happens for lobsters, salamanders, and many other animals.',
-          'When it comes to regeneration, few animals can equal the magic of the planarian.',
-          'This type of regeneration is demonstrated in a few animals, such as hydras and sea stars.',
-          'They hope that this line of research will make regeneration possible in humans someday.'
-        ],
-        answer: 'A',
-        explanation: '後句 "on the other hand" 是關鍵轉折訊號，表示後句要介紹「相對的另一種」再生。前文描述的是蜥蜴式的有限再生（失去尾巴→尾巴再生，但尾巴不能變成新蜥蜴），空格應為這種單向再生命名。選項 (A) "Scientists call this unidirectional regeneration"（科學家稱此為單向再生）完美命名前文描述的現象，使後句的「雙向再生（on the other hand）」有對比的基礎。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '後句「把渦蟲切成一半，你會得到兩隻渦蟲」是雙向再生的例子。空格應說明哪些動物具有雙向再生能力。',
-        strategy: 'example',
-        strategyLabel: '舉例導入',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Scientists call this unidirectional regeneration.',
-          'Humans aren\'t completely without regenerative talents.',
-          'The same thing happens for lobsters, salamanders, and many other animals.',
-          'When it comes to regeneration, few animals can equal the magic of the planarian.',
-          'This type of regeneration is demonstrated in a few animals, such as hydras and sea stars.',
-          'They hope that this line of research will make regeneration possible in humans someday.'
-        ],
-        answer: 'E',
-        explanation: '後句的 hydra（水螅）是雙向再生的例子，空格應先點出哪些動物有這種能力，讓後句的例子有所依附。選項 (E) "This type of regeneration is demonstrated in a few animals, such as hydras and sea stars"（這種再生在少數動物中可見，如水螅和海星）引出了後文的水螅例子，且 "such as hydras" 直接預示了後句的「Cut a hydra...」。'
-      },
-      {
-        num: 35, blank: 35,
-        hint: '後句「一隻渦蟲被切成數百片，每片都能在一週內長回完整個體」。空格是新段落的開頭，應介紹渦蟲（planarian）這種特殊動物。',
-        strategy: 'topic',
-        strategyLabel: '段首主題句',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Scientists call this unidirectional regeneration.',
-          'Humans aren\'t completely without regenerative talents.',
-          'The same thing happens for lobsters, salamanders, and many other animals.',
-          'When it comes to regeneration, few animals can equal the magic of the planarian.',
-          'This type of regeneration is demonstrated in a few animals, such as hydras and sea stars.',
-          'They hope that this line of research will make regeneration possible in humans someday.'
-        ],
-        answer: 'D',
-        explanation: '後文整段都在描述渦蟲（planarian）驚人的再生能力。選項 (D) "When it comes to regeneration, few animals can equal the magic of the planarian"（說到再生，很少動物能比得上渦蟲的神奇能力）是完美的段首主題句，引出後面對渦蟲再生能力的詳細描述。'
-      }
+    id: '103指考',
+    year: '103', etype: '指考',
+    topic: "怪人 Eccentrics",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "Eccentrics are people who have an unusual or odd personality, set of\nbeliefs, or behavior pattern. They may or may not comprehend the\nstandards for normal behavior in their culture. They simply don’t care\nabout the society’s disapproval of their habits or beliefs.\n\nOnce considered socially unacceptable, eccentric people have been found\nto possess some positive characteristics. 31 They often have more\ncuriosity about the world and, in many cases, are contentedly obsessed\nby hobbies and interests. 32 They live in a world of their own and do\nnot worry about what others think of them. So they are usually less\nrestricted and therefore more carefree in forming new ideas.\n\n33 Statistics show they visit their doctors less—about once in eight to\nnine years, which is 20 times less than the average person. This could\nbe partly due to their innate traits such as humor and happiness. 34\nThis may explain why eccentrics are, on the whole, healthier.\n\nPsychologists therefore suggest that we pay attention to those who do\nnot conform. It could be our aunt who has been raising pet lizards. 35\nTheir crazy hobby or strange sense of humor is what keeps them going.\nEccentric people may seem odd, but they will likely live a happier and\nhealthier life because they enjoy what they are doing. In fact, many of\nhistory’s most brilliant minds have displayed some unusual behaviors and\nhabits.",
+    options: [
+        {k:'A', text:"Eccentrics are also found to be healthier."}
+        {k:'B', text:"According to a recent study in England, eccentrics are more creative."}
+        {k:'C', text:"Or it could be our best friend’s brother who wears shorts to a formal dance."}
+        {k:'D', text:"People may have eccentric taste in clothes, or have eccentric hobbies."}
+        {k:'E', text:"Psychologists also find that eccentric people do not follow conventions."}
+        {k:'F', text:"Such personal traits are found to play an important role in boosting the body’s immune system."}
+    ],
+    answers: ["B", "E", "A", "F", "C"],
+    priority: [
+        {num:31,order:1,type:"代名詞掛鉤",hook:"後句 \"They often have more curiosity...\" — They需要前句提供指代",signal:"選(B)：eccentrics are more creative（They = eccentrics）"}
+        {num:35,order:2,type:"舉例掛鉤",hook:"前句 \"our aunt who has been raising pet lizards\" + 後句 \"Their crazy hobby\"",signal:"選(C)：Or it could be our best friend's brother（Or接前句平行列舉）"}
+        {num:33,order:3,type:"段首主題句",hook:"後文說看醫生次數少 → 段落主題是「怪人更健康」",signal:"選(A)：Eccentrics are also found to be healthier（also承接前段正面特質）"}
+        {num:34,order:4,type:"代名詞掛鉤",hook:"後句 \"This may explain why eccentrics are healthier\" — This指什麼機制？",signal:"選(F)：traits play role in boosting immune system（This = 免疫系統機制）"}
+        {num:32,order:5,type:"排除消去",hook:"後句 \"They live in a world of their own\" — 剩(E)",signal:"選(E)：do not follow conventions（呼應後句不在乎他人想法）"}
     ]
   },
   {
-    id: 4,
-    year: '104學測',
-    topic: '法國大革命與食物',
-    tag: 'bridge',
-    tagLabel: '承上啟下',
-    passage: `The causes of the French Revolution are complex and still widely debated among historians. However, many scholars agree that food played an important role in the socio-political upheaval. [31]
-
-A main component in the French daily meal, bread was often tied up with the national identity. Studies show that the average 18th-century French worker spent half his daily wage on bread. In 1788 and 1789, however, when the grain crops failed two years in a row, the price of bread shot up to 88 percent of his earnings. [32] The great majority of the French population was starving. Some even resorted to theft or prostitution to stay alive.
-
-[33] Started in the 15th century, this tax on salt consumption was applied particularly to the poor, while the nobility and the privileged were exempted. The high rate and unequal distribution of the tax provoked widespread illegal dealing in salt by smugglers, leading to skyrocketing salt prices.
-
-However, the royal court at Versailles was isolated from and indifferent to the escalating crisis. The desperate population thus blamed the ruling class for the famine and economic disturbances. [34] The results include the storming of the Bastille and the eventual beheading of King Louis XVI.
-
-[35] Yet, the gabelle and the "bread question" remained among the most unsettling social and political issues throughout the Revolutionary period.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '前句說「許多學者同意食物在政治動亂中扮演了重要角色」。後面第二段談麵包、第三段談鹽。空格應點出這兩種食物，作為承上啟下的過渡句。',
-        strategy: 'bridge',
-        strategyLabel: '承上啟下',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'External threats closely shaped the course of the Revolution.',
-          'With the collapse of the royal family, calm was restored gradually.',
-          'Meanwhile, peasants\' resentment against the gabelle was spreading.',
-          'The common household could not afford to buy enough food to meet their basic needs.',
-          'The anger quickly built up, culminating in the massive riots of the French Revolution in 1789.',
-          'Specifically, bread and salt, two most essential elements in the French cuisine, were at the heart of the conflict.'
-        ],
-        answer: 'F',
-        explanation: '這是段末空格，後文分別用一段談「麵包」、一段談「鹽稅」。選項 (F) "Specifically, bread and salt, two most essential elements in the French cuisine, were at the heart of the conflict" 同時點名了麵包和鹽，"Specifically" 進一步說明「食物的重要性」，並為後兩段提供了完美的導引。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '前句說「麵包價格漲到收入的88%」，後句說「大多數法國人在挨餓」。空格應說明高麵包價格造成的直接後果——家庭買不起食物。',
-        strategy: 'cause',
-        strategyLabel: '因果關係',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'External threats closely shaped the course of the Revolution.',
-          'With the collapse of the royal family, calm was restored gradually.',
-          'Meanwhile, peasants\' resentment against the gabelle was spreading.',
-          'The common household could not afford to buy enough food to meet their basic needs.',
-          'The anger quickly built up, culminating in the massive riots of the French Revolution in 1789.',
-          'Specifically, bread and salt, two most essential elements in the French cuisine, were at the heart of the conflict.'
-        ],
-        answer: 'D',
-        explanation: '前句「麵包漲到收入的88%」→ 空格（後果）→ 後句「大多數人在挨餓」。選項 (D) "The common household could not afford to buy enough food to meet their basic needs"（普通家庭買不起足夠的食物）是因果鏈中的中間環節，解釋了從「高價格」到「饑荒」的邏輯連結。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '後句 "Started in the 15th century, this tax on salt consumption..."。這裡的 "this tax" 需要前句先提到「鹽稅」。空格是新段落開頭，應引入鹽稅（gabelle）的話題。',
-        strategy: 'pronoun',
-        strategyLabel: '代名詞指代',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'External threats closely shaped the course of the Revolution.',
-          'With the collapse of the royal family, calm was restored gradually.',
-          'Meanwhile, peasants\' resentment against the gabelle was spreading.',
-          'The common household could not afford to buy enough food to meet their basic needs.',
-          'The anger quickly built up, culminating in the massive riots of the French Revolution in 1789.',
-          'Specifically, bread and salt, two most essential elements in the French cuisine, were at the heart of the conflict.'
-        ],
-        answer: 'C',
-        explanation: '後句 "this tax on salt" 中的 "this" 需要前句先提到 "salt tax" 或 "gabelle"。選項 (C) "Meanwhile, peasants\' resentment against the gabelle was spreading"（同時，農民對鹽稅的怨恨正在蔓延）引入了 gabelle（鹽稅），使後句的 "this tax" 有所指代，"Meanwhile" 也與麵包段形成時間上的平行敘述。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '前句說「絕望的民眾怪罪統治階層」，後句說「結果包括攻打巴士底獄和路易十六被斬首」。空格應描述憤怒如何演變成暴動。',
-        strategy: 'cause',
-        strategyLabel: '因果關係',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'External threats closely shaped the course of the Revolution.',
-          'With the collapse of the royal family, calm was restored gradually.',
-          'Meanwhile, peasants\' resentment against the gabelle was spreading.',
-          'The common household could not afford to buy enough food to meet their basic needs.',
-          'The anger quickly built up, culminating in the massive riots of the French Revolution in 1789.',
-          'Specifically, bread and salt, two most essential elements in the French cuisine, were at the heart of the conflict.'
-        ],
-        answer: 'E',
-        explanation: '前句「民眾怪罪統治階層」，後句「結果包括攻打巴士底獄」。選項 (E) "The anger quickly built up, culminating in the massive riots of the French Revolution in 1789"（憤怒迅速積累，最終爆發為1789年的大規模暴動）是完美的過渡句，描述了從「積聚怨恨」到「歷史事件」的因果過程。'
-      },
-      {
-        num: 35, blank: 35,
-        hint: '後句說「儘管如此，鹽稅和麵包問題在整個大革命時期仍是最令人不安的議題」。後句的 "Yet" 是轉折詞，空格應是一個相對樂觀或結束的陳述，才能形成轉折。',
-        strategy: 'contrast',
-        strategyLabel: '轉折對比',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'External threats closely shaped the course of the Revolution.',
-          'With the collapse of the royal family, calm was restored gradually.',
-          'Meanwhile, peasants\' resentment against the gabelle was spreading.',
-          'The common household could not afford to buy enough food to meet their basic needs.',
-          'The anger quickly built up, culminating in the massive riots of the French Revolution in 1789.',
-          'Specifically, bread and salt, two most essential elements in the French cuisine, were at the heart of the conflict.'
-        ],
-        answer: 'B',
-        explanation: '後句以 "Yet" 轉折，表示事情並沒有完全平息。空格需要是一個「看似結束」的陳述，才能形成 "Yet" 的轉折效果。選項 (B) "With the collapse of the royal family, calm was restored gradually"（隨著王室垮台，平靜逐漸恢復）代表表面上的平息，後句的 "Yet, the gabelle and the bread question remained..." 則揭示深層問題仍在持續，形成有力的轉折。'
-      }
+    id: '104指考',
+    year: '104', etype: '指考',
+    topic: "鋰電池",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "Since the early 1990s, the lithium-ion battery has been the most\nsuitable battery for portable electronic equipment. Today, they’re\ncommonly used for cellphones, computers, tablets, digital cameras, and\nother devices.\n\nLithium-ion batteries have nearly twice the energy density of\ntraditional nickel cadmium batteries. 31 This feature has important\nimplications for cellphones and computers, because it makes these items\nmore portable for consumers. It also makes power tools easier to use and\nallows workers to use them for longer periods of time.\n\n32 Lithium-ion batteries retain no “memory” of their power capacity from\nprevious charging cycles. Thus they require no scheduled cycling and can\nbe fully re-fueled to their maximum capacity during each charging cycle.\nOther rechargeable battery types, in contrast, retain information from\nprevious charging cycles, which wastes valuable storage space. Over\ntime, this makes these rechargeable batteries hold less of a charge.\n\n33 It is fragile and requires a protection circuit to maintain safe\noperation. A high load could overheat the pack and safety might be\njeopardized. 34 After 2-3 years of use, the pack often becomes\nunserviceable due to a large voltage drop caused by high internal\nresistance.\n\nIt should be noted, however, that manufacturers are constantly making\nimprovements on lithium-ion batteries. 35 With such rapid progress, the\nuse of lithium-ion batteries will certainly expand further.",
+    options: [
+        {k:'A', text:"The lithium-ion battery is also a low maintenance battery."}
+        {k:'B', text:"Despite its overall advantages, the lithium-ion battery has its drawbacks."}
+        {k:'C', text:"New and enhanced chemical combinations are introduced every six months or so."}
+        {k:'D', text:"Attempts to develop rechargeable lithium-ion batteries failed due to memory problems."}
+        {k:'E', text:"That is, they carry more power in a smaller unit, helping to reduce overall weight and size."}
+        {k:'F', text:"Another downside is the increase of the internal resistance that occurs with cycling and aging."}
+    ],
+    answers: ["E", "A", "B", "F", "C"],
+    priority: [
+        {num:31,order:1,type:"代名詞掛鉤",hook:"後句 \"This feature has important implications...\" — This feature指什麼特性？",signal:"選(E)：carry more power in a smaller unit（That is解釋energy density）"}
+        {num:35,order:2,type:"關鍵字重疊",hook:"前句 \"manufacturers making improvements\" + 後句 \"such rapid progress\"",signal:"選(C)：new chemical combinations every six months（rapid progress的具體內容）"}
+        {num:33,order:3,type:"轉折掛鉤",hook:"後句突然說 \"It is fragile\" — 從優點轉到缺點",signal:"選(B)：Despite advantages...has drawbacks（Despite引入缺點段）"}
+        {num:32,order:4,type:"段首主題句",hook:"後文整段說不需要記憶充電量",signal:"選(A)：low maintenance battery（主題句概括後段）"}
+        {num:34,order:5,type:"排除消去",hook:"前句過熱危險，後句電壓下降",signal:"選(F)：internal resistance increases（連結兩個缺點）"}
     ]
   },
   {
-    id: 5,
-    year: '105學測',
-    topic: '哥白尼（Copernicus）',
-    tag: 'time',
-    tagLabel: '時序流程',
-    passage: `Copernicus, founder of modern astronomy, was born in 1473 to a well-to-do merchant family in Torun, Poland. He was sent off to attend university in Italy, studying mathematics and optics, and canon law. Returning from his studies abroad, Copernicus was appointed to an administrative position in the cathedral of Frauenburg. There he spent a sheltered and academic life for the rest of his days.
-
-[31] He made his observations from a tower situated on the protective wall around the cathedral. His observations were made with the "bare eyeball," so to speak, as a hundred years were to pass before the invention of the telescope. In 1530, Copernicus completed his famous work De Revolutionibus. [32]
-
-Copernicus died in 1543 and was never to know what a stir his work would cause. In his book, he asserted that the Earth rotated on its axis once daily and traveled around the Sun once yearly. [33] People then regarded the Earth as stationary, situated at the center of the universe. Copernicus' theory challenged long-held beliefs that could overturn the core values of the Catholic world. [34] Other ministers quickly followed suit.
-
-Ironically, Copernicus had dedicated his work to Pope Paul III. [35] The Church ultimately banned De Revolutionibus, and the book remained on the list of forbidden reading material for nearly three centuries thereafter.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '前句描述哥白尼在教堂任職的學術生活，後句說他從教堂城牆上的塔樓進行天文觀測。空格應銜接「在教堂任職」→「從事天文研究」。',
-        strategy: 'bridge',
-        strategyLabel: '段首承接',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Meanwhile, Copernicus was a lifelong member of the Catholic Church.',
-          'The book, however, wasn\'t published until two months before his death.',
-          'If this act was an attempt to seek the Catholic Church\'s approval, it was of no use.',
-          'This went against the philosophical and religious beliefs held during medieval times.',
-          'Religious leader Martin Luther voiced his opposition to the sun-centered system model.',
-          'In his spare time, Copernicus studied the stars and the planets, applying his math knowledge to the mysteries of the night sky.'
-        ],
-        answer: 'F',
-        explanation: '後句說「他從塔樓進行觀測」，需要前句說明哥白尼為何在業餘時間從事天文觀測。選項 (F) "In his spare time, Copernicus studied the stars and the planets, applying his math knowledge to the mysteries of the night sky"（在業餘時間，哥白尼研究星象，將數學知識應用於夜空的奧秘）自然銜接了他的學術職位與天文研究，"In his spare time" 呼應前段「受保護的學術生活」。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '前句「1530年完成 De Revolutionibus」，後句「1543年哥白尼去世」。空格需要填補這本書在這段時間的出版歷史，作為時間線的中間節點。',
-        strategy: 'time',
-        strategyLabel: '時序連貫',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Meanwhile, Copernicus was a lifelong member of the Catholic Church.',
-          'The book, however, wasn\'t published until two months before his death.',
-          'If this act was an attempt to seek the Catholic Church\'s approval, it was of no use.',
-          'This went against the philosophical and religious beliefs held during medieval times.',
-          'Religious leader Martin Luther voiced his opposition to the sun-centered system model.',
-          'In his spare time, Copernicus studied the stars and the planets, applying his math knowledge to the mysteries of the night sky.'
-        ],
-        answer: 'B',
-        explanation: '前句「1530年完成書稿」，後句「1543年去世」，中間需要說明書的出版時間。選項 (B) "The book, however, wasn\'t published until two months before his death"（然而，這本書直到他去世前兩個月才出版）完美填補了「1530完成→ 1543年出版（去世前兩個月）」的時間線，"however" 也暗示了意外的等待。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '前句說哥白尼主張「地球繞太陽」，後句說「當時人們認為地球靜止不動，是宇宙中心」。空格應描述哥白尼的理論與當時主流觀點的衝突。',
-        strategy: 'contrast',
-        strategyLabel: '對比衝突',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Meanwhile, Copernicus was a lifelong member of the Catholic Church.',
-          'The book, however, wasn\'t published until two months before his death.',
-          'If this act was an attempt to seek the Catholic Church\'s approval, it was of no use.',
-          'This went against the philosophical and religious beliefs held during medieval times.',
-          'Religious leader Martin Luther voiced his opposition to the sun-centered system model.',
-          'In his spare time, Copernicus studied the stars and the planets, applying his math knowledge to the mysteries of the night sky.'
-        ],
-        answer: 'D',
-        explanation: '前句「哥白尼主張地球繞太陽轉」，後句「當時人們認為地球是宇宙中心」，中間需要說明這個理論「違背了當時的信念」。選項 (D) "This went against the philosophical and religious beliefs held during medieval times"（這違背了中世紀的哲學和宗教信仰）完美作為過渡，說明衝突的本質，為後面教會的反應做鋪墊。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '前句說哥白尼的理論挑戰了天主教核心價值，後句說「其他神職人員也隨即跟進反對」。空格應提到第一個公開反對的人。',
-        strategy: 'example',
-        strategyLabel: '列舉例子',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Meanwhile, Copernicus was a lifelong member of the Catholic Church.',
-          'The book, however, wasn\'t published until two months before his death.',
-          'If this act was an attempt to seek the Catholic Church\'s approval, it was of no use.',
-          'This went against the philosophical and religious beliefs held during medieval times.',
-          'Religious leader Martin Luther voiced his opposition to the sun-centered system model.',
-          'In his spare time, Copernicus studied the stars and the planets, applying his math knowledge to the mysteries of the night sky.'
-        ],
-        answer: 'E',
-        explanation: '後句說「其他神職人員也隨即跟進」，表示有人帶頭反對。選項 (E) "Religious leader Martin Luther voiced his opposition to the sun-centered system model"（宗教領袖馬丁路德公開反對日心說）是第一個表態的反對者，後句 "Other ministers quickly followed suit"（其他神職人員迅速跟進）呼應了 "followed" 的動作，邏輯完整。'
-      },
-      {
-        num: 35, blank: 35,
-        hint: '前句說哥白尼把書獻給了教皇保羅三世，後句說「教會最終禁止了這本書」。"Ironically" 引出諷刺，空格應說明這個獻書舉動的用意為何，以解釋後文「但毫無用處」的諷刺效果。',
-        strategy: 'contrast',
-        strategyLabel: '諷刺轉折',
-        options: ['A','B','C','D','E','F'],
-        optionTexts: [
-          'Meanwhile, Copernicus was a lifelong member of the Catholic Church.',
-          'The book, however, wasn\'t published until two months before his death.',
-          'If this act was an attempt to seek the Catholic Church\'s approval, it was of no use.',
-          'This went against the philosophical and religious beliefs held during medieval times.',
-          'Religious leader Martin Luther voiced his opposition to the sun-centered system model.',
-          'In his spare time, Copernicus studied the stars and the planets, applying his math knowledge to the mysteries of the night sky.'
-        ],
-        answer: 'C',
-        explanation: '前句「哥白尼把書獻給教皇（Ironically）」，後句「教會最終還是禁了這本書」。空格需要解釋這個諷刺——獻書給教皇可能是想尋求批准。選項 (C) "If this act was an attempt to seek the Catholic Church\'s approval, it was of no use"（如果這是為了尋求教會認可，那完全沒用）完美詮釋了 "Ironically" 的含義，承上（獻書）啟下（教會禁書）。'
-      }
+    id: '105指考',
+    year: '105', etype: '指考',
+    topic: "加盟連鎖 Franchise",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "Starting a business on one’s own can be quite challenging and costly. To\nreduce the risks involved in starting a business from scratch, many\npeople buy a franchise instead. 31 Under the license, the individual\nacquires the right to use the big company’s brand name and agrees to\nsell its products.\n\nThe concept of the franchise dates back to the 19th century in the U.S.\n32 Then, in the 1930s, Howard Johnson restaurants skyrocketed in\npopularity, paving the way for restaurant chains and the subsequent\nfranchises that would define the unprecedented rise of the American\nfast-food industry.\n\nThere are many advantages to investing in a franchise. One of the\nbenefits is the ready-made business operation. 33 Depending on the\nfranchise, the franchisor company may offer support in training and\nfinancial planning. Some even provide assistance with approved\nsuppliers. To new business owners, the most recognized advantage of a\nfranchise is perhaps the well-established brand name of the franchisor\nsuch as that of McDonald’s. 34\n\nDisadvantages include heavy start-up costs as well as ongoing royalty\ncosts on the part of the franchisee. To take the McDonald’s example\nfurther, the estimated minimum cost for a franchisee to start a\nMcDonald’s is US$500,000. And it has to pay an annual fee equivalent to\n12% of its sales to McDonald’s.\n35 Other disadvantages include lack of territory control or creativity\nwith one’s own business.",
+    options: [
+        {k:'A', text:"Whether a franchise is profitable or not depends largely on the nature of the business."}
+        {k:'B', text:"Research has shown that customers tend to choose a brand they recognize over one they don’t."}
+        {k:'C', text:"A franchise comes with a built-in business formula including products, services, and even employee uniforms."}
+        {k:'D', text:"Moreover, the franchisee is given no right to renew or extend the franchise after the term of the contract."}
+        {k:'E', text:"The most famous example was Isaac Singer, who created franchises to distribute his sewing machines to larger areas."}
+        {k:'F', text:"A franchise is a license issued by a large, usually well-known, company to an individual or a small business owner."}
+    ],
+    answers: ["F", "E", "C", "B", "D"],
+    priority: [
+        {num:31,order:1,type:"代名詞掛鉤",hook:"後句 \"Under the license, the individual acquires the right...\" — the license需要前句先定義",signal:"選(F)：A franchise is a license（定義franchise=license，使後句有指代）"}
+        {num:34,order:2,type:"關鍵字重疊",hook:"前句 \"McDonald's known brand name\" → 需要支撐品牌優勢的論據",signal:"選(B)：customers tend to choose a brand they recognize（研究支撐論點）"}
+        {num:32,order:3,type:"時序掛鉤",hook:"前句19世紀，後句 \"Then, in the 1930s\"",signal:"選(E)：Isaac Singer（19世紀縫紉機加盟，填入時序中間）"}
+        {num:33,order:4,type:"細節補充",hook:"前句 \"ready-made business operation\" → 說明包含什麼",signal:"選(C)：built-in business formula including products, services, uniforms"}
+        {num:35,order:5,type:"排除消去",hook:"前句費用缺點，後句其他缺點",signal:"選(D)：Moreover...no right to renew（Moreover承接缺點列舉）"}
     ]
   },
   {
-    id: 6,
-    year: '106學測',
-    topic: '角鬥士（Gladiators）',
-    tag: 'topic',
-    tagLabel: '主題句結構',
-    passage: `Gladiators were combatants who fought against criminals, wild animals, and other gladiators in public exhibitions. These fights, called munera, took place in specially built arenas. The most famous arena was the Colosseum in Rome, which could seat 50,000 spectators.
-
-[31] The fights attracted supporters of different ranks. Emperors, politicians, and military leaders were among those who organized the fights, and they spent huge amounts of money on the shows. 
-
-[32] Some gladiators were enslaved people taken from conquered lands; some were prisoners of war; and others were free men who voluntarily trained to become gladiators. They all received regular meals and medical care, plus a share of any prizes won.
-
-Contrary to popular belief, gladiator fights did not always end in death. [33] Gladiators were valuable investments and killing them unnecessarily would be too costly. So, in many cases, when a gladiator was defeated but his performance was considered honorable, the emperor or the crowd might spare his life.
-
-[34] Female gladiators, or gladiatrices, did exist. However, they fought far less frequently than their male counterparts. Fighting was reserved almost exclusively for men, and women combatants were banned from official Roman spectacles after 200 AD.
-
-[35] Not much has been found outside of Italy. But in Britain, for instance, a gravestone features a female gladiator, and ancient mosaic paintings show women fighting in the arena.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '後句說「各階層的支持者都被吸引了」，並列舉了皇帝、政治家、軍事領袖。空格應說明為什麼這些打鬥受到廣泛支持——涉及金錢與社會功能。',
-        strategy: 'topic',
-        strategyLabel: '段首主題句',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'The fights were expensive to organize but highly profitable for the sponsors.',
-          'Gladiators were recruited from different sources.',
-          'Gladiator fights had many functions in Roman society.',
-          'In fact, most gladiators were forced to take part in these fights.',
-          'Evidence of female gladiators is rare but does exist.'
-        ],
-        answer: 'C',
-        explanation: '後文說皇帝、政治家、軍事領袖都贊助這些打鬥，並花費大量金錢。這段的重點是「角鬥在羅馬社會扮演的多種功能」。選項 (C) "Gladiator fights had many functions in Roman society"（角鬥在羅馬社會有許多功能）最適合作為段首主題句，引出後文對贊助、娛樂、政治功能的描述。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '後文列舉了奴隸、戰俘、自願者三種來源，並說他們都有固定餐食和醫療照顧。空格是新段落的開頭，應是段落主題句。',
-        strategy: 'topic',
-        strategyLabel: '段首主題句',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'The fights were expensive to organize but highly profitable for the sponsors.',
-          'Gladiators were recruited from different sources.',
-          'Gladiator fights had many functions in Roman society.',
-          'In fact, most gladiators were forced to take part in these fights.',
-          'Evidence of female gladiators is rare but does exist.'
-        ],
-        answer: 'B',
-        explanation: '後文列舉了三種角鬥士的來源（奴隸、戰俘、自願者），這是典型的「主題句＋列舉支撐」結構。選項 (B) "Gladiators were recruited from different sources"（角鬥士從不同來源招募）是最完美的段首主題句，"different sources" 預示了後文的三種列舉。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '前句說「與一般認知相反，角鬥並不總是以死亡收場」，後句說「角鬥士是有價值的投資，不必要地殺死他們代價太高」。空格應提供更多支撐「不一定要殺」的理由。',
-        strategy: 'support',
-        strategyLabel: '論點支撐',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'The fights were expensive to organize but highly profitable for the sponsors.',
-          'Gladiators were recruited from different sources.',
-          'Gladiator fights had many functions in Roman society.',
-          'In fact, most gladiators were forced to take part in these fights.',
-          'Evidence of female gladiators is rare but does exist.'
-        ],
-        answer: 'A',
-        explanation: '前句「不是總以死亡收場」需要支撐，後句說「殺死他們太浪費了」（他們是投資）。選項 (A) "The fights were expensive to organize but highly profitable for the sponsors"（組織打鬥花費昂貴，但對贊助者非常有利可圖）說明了角鬥士的經濟價值，為後句「殺死他們太浪費」提供了背景，兩者共同支撐「不一定要殺」的論點。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '後句說「女角鬥士（gladiatrices）確實存在，但比男性少得多」，且「200 AD 後被禁止」。空格是這段的開頭，應引出女角鬥士的話題。',
-        strategy: 'topic',
-        strategyLabel: '段首主題句',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'The fights were expensive to organize but highly profitable for the sponsors.',
-          'Gladiators were recruited from different sources.',
-          'Gladiator fights had many functions in Roman society.',
-          'In fact, most gladiators were forced to take part in these fights.',
-          'Evidence of female gladiators is rare but does exist.'
-        ],
-        answer: 'E',
-        explanation: '後文整段討論女角鬥士的存在。選項 (E) "Evidence of female gladiators is rare but does exist"（女角鬥士的證據雖然稀少，但確實存在）是段首主題句，"rare but does exist" 的語氣與後文「比男性少但確有記載」完全呼應，並為後段的考古證據描述做了最好的預告。'
-      },
-      {
-        num: 35, blank: 35,
-        hint: '前句說女角鬥士的證據「稀少但存在」，後句說「在義大利以外發現的不多，但在英國有墓碑和馬賽克畫」。空格應引出「考古證據」的話題。',
-        strategy: 'bridge',
-        strategyLabel: '承上啟下',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'The fights were expensive to organize but highly profitable for the sponsors.',
-          'Gladiators were recruited from different sources.',
-          'Gladiator fights had many functions in Roman society.',
-          'In fact, most gladiators were forced to take part in these fights.',
-          'Evidence of female gladiators is rare but does exist.'
-        ],
-        answer: 'E',
-        explanation: '注意本題需要重新評估——選項 (E) 已被使用於第 34 題。實際上這道題的空格 35 位置和後文（英國考古證據）顯示，空格 35 的正確答案可能需要根據完整選項組重新確認。在實際考試中，一旦確定前面的答案，這道題可用排除法確認。'
-      }
+    id: '106指考',
+    year: '106', etype: '指考',
+    topic: "生物再生 Regeneration",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "One of the most difficult things for a human to face is the loss of a\nlimb. If a person loses an arm or a leg, he/she must be fitted with an\nartificial limb.\n\nThe situation is very different for a starfish. If a starfish loses an\narm, it can grow a new one.\n31 Snails can even regrow their heads—imagine what the world would be\nlike if humans could do that. But we can’t. Nor can we grow new limbs or\neven fingers. That’s why scientists are studying animals that can regrow\nbody parts, that is, regenerate. 32\n\nMany different kinds of animals show some form of regeneration. Most of\nthem are, however, limited to the sort a lizard is capable of, like\nregrowing a lost tail. A cockroach can grow back a missing limb, but the\nlimb itself can’t generate a new cockroach. 33 Bidirectional\nregeneration, on the other hand, refers to a situation in which\nsplitting of an animal will result in separate fully functional animals.\n34 Cut a hydra in half, and you’ll get two hydras. Cut it into four\npieces, and you’ll get four.\n\n35 A single one can be cut into hundreds of pieces and each will grow\nback into a whole in a week or so. Because of this remarkable ability,\none planarian can be created over and over, giving it a sort of\nimmortality. Whether this phenomenon can be achieved in humans will\nlikely require years of research.",
+    options: [
+        {k:'A', text:"Scientists call this unidirectional regeneration."}
+        {k:'B', text:"Humans aren’t completely without regenerative talents."}
+        {k:'C', text:"The same thing happens for lobsters, salamanders, and many other animals."}
+        {k:'D', text:"When it comes to regeneration, few animals can equal the magic of the planarian."}
+        {k:'E', text:"This type of regeneration is demonstrated in a few animals, such as hydras and sea stars."}
+        {k:'F', text:"They hope that this line of research will make regeneration possible in humans someday."}
+    ],
+    answers: ["C", "F", "A", "E", "D"],
+    priority: [
+        {num:33,order:1,type:"轉折掛鉤",hook:"後句 \"Bidirectional regeneration, on the other hand\" — on the other hand是強烈對比訊號",signal:"選(A)：Scientists call this unidirectional regeneration（對應雙向的是單向）"}
+        {num:35,order:2,type:"段首主題句",hook:"後段整體講planarian的驚人再生力",signal:"選(D)：few animals can equal the magic of the planarian（預告主角）"}
+        {num:31,order:3,type:"平行列舉",hook:"前句海星、後句蝸牛 → 空格是同類動物",signal:"選(C)：The same thing happens for lobsters, salamanders（The same thing承接）"}
+        {num:34,order:4,type:"代名詞掛鉤",hook:"後句 \"Cut a hydra in half\" — hydra需要前句先提及",signal:"選(E)：such as hydras and sea stars（引出後句的hydra例子）"}
+        {num:32,order:5,type:"排除消去",hook:"前句科學家研究再生，後段列舉動物",signal:"選(F)：They hope research will make regeneration possible in humans（研究目的）"}
     ]
   },
   {
-    id: 7,
-    year: '107學測',
-    topic: '聯覺（Synesthesia）',
-    tag: 'contrast',
-    tagLabel: '轉折對比',
-    passage: `Have you ever thought of "coloring" the names of the days of the week? When you listen to someone speaking, do you see a rainbow of colors? Or perhaps Mozart's music tastes like an apple pie to you? If so, it is very likely that you have synesthesia.
-
-Synesthesia is a condition in which people's senses intermix. In some cases, people with synesthesia may experience colors when they hear, read, or even think of letters and numbers. In others, words can trigger a real sensation of taste on their tongue.
-
-[31] In the early 1990s, however, scientists noticed that synesthetic colors do not change over time. When asked what color is evoked by a letter or number, synesthetic people would persistently give the same answer even if tested months or years apart. [32] The most compelling support, however, comes from brain scans, which show that color processing areas in the brain light up when these people listen to certain words.
-
-Is synesthesia genetically inherited or acquired after birth? Scientists agree that synesthesia has a genetic basis. But an actual synesthesia gene has not been identified yet. [33] For example, the flavors people with taste-word synesthesia experience are usually childhood flavors, such as chocolate or strawberries.
-
-Once thought to be extremely rare, synesthesia is now found to affect about one to four percent of the population. [34] As is often observed, most of us tend to associate lower notes with darker colors and higher notes with brighter colors.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '後句以 "In the early 1990s, however, scientists noticed..." 開頭。"however" 是關鍵轉折詞，表示1990年代的發現與空格內容「相反或對比」。1990年代科學家發現聯覺是真實的，所以空格應是之前的「舊觀點（認為是假的）」。',
-        strategy: 'contrast',
-        strategyLabel: '轉折對比',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'This consistency serves as a proof that synesthesia is real.',
-          'Meanwhile, environmental influences seem to shape a person\'s synesthesia.',
-          'People with synesthesia used to be accused of making their experiences up.',
-          'Some studies even show that people may all be synesthetic to some degree.'
-        ],
-        answer: 'C',
-        explanation: '後句以 "however" 轉折，說明1990年代科學家「發現聯覺顏色不會隨時間改變」（即確認是真實的）。轉折前的空格應是之前的「舊觀點」——認為聯覺是假裝的。選項 (C) "People with synesthesia used to be accused of making their experiences up"（有聯覺的人過去常被指控是在捏造體驗）正是這個舊觀點，"however" 引出新發現推翻了舊觀點。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '前句說「聯覺者無論何時被問，對同一字母/數字都給出相同的顏色答案」，後句說「最有力的支持來自腦部掃描」。空格應提到這個「顏色不變」現象能作為某種證明。',
-        strategy: 'support',
-        strategyLabel: '論點支撐',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'This consistency serves as a proof that synesthesia is real.',
-          'Meanwhile, environmental influences seem to shape a person\'s synesthesia.',
-          'People with synesthesia used to be accused of making their experiences up.',
-          'Some studies even show that people may all be synesthetic to some degree.'
-        ],
-        answer: 'A',
-        explanation: '前句描述「聯覺者的答案具有高度一致性」，後句說「最有力的支持來自腦部掃描」。選項 (A) "This consistency serves as a proof that synesthesia is real"（這種一致性證明了聯覺是真實的）承接前句的「一致性」（consistency 呼應 persistently give the same answer），並引出後句「更有力的科學支持（腦部掃描）」，邏輯層層遞進。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '前句說「聯覺有遺傳基礎，但環境也有影響」，後句說「for example, 聯覺者體驗的是童年口味（巧克力、草莓）」。空格應提到環境（特別是童年經驗）的影響。',
-        strategy: 'example',
-        strategyLabel: '舉例支撐',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'This consistency serves as a proof that synesthesia is real.',
-          'Meanwhile, environmental influences seem to shape a person\'s synesthesia.',
-          'People with synesthesia used to be accused of making their experiences up.',
-          'Some studies even show that people may all be synesthetic to some degree.'
-        ],
-        answer: 'B',
-        explanation: '後句的例子（童年口味）是在說明「環境影響聯覺的內容」。空格需要先提出「環境影響」這個論點，後句才能用 "For example" 來支撐。選項 (B) "Meanwhile, environmental influences seem to shape a person\'s synesthesia"（同時，環境影響似乎塑造了一個人的聯覺內容）是完美的論點句，"Meanwhile" 承接前句的遺傳因素，引出「環境因素」的討論。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '前句說「聯覺影響約1-4%的人口」，後句說「大多數人都傾向把低音與深色聯繫起來、高音與亮色聯繫起來」，暗示「普通人也有某種程度的聯覺」。空格應提出這個「普通人也有聯覺」的觀點。',
-        strategy: 'topic',
-        strategyLabel: '段落延伸',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'This consistency serves as a proof that synesthesia is real.',
-          'Meanwhile, environmental influences seem to shape a person\'s synesthesia.',
-          'People with synesthesia used to be accused of making their experiences up.',
-          'Some studies even show that people may all be synesthetic to some degree.'
-        ],
-        answer: 'D',
-        explanation: '前句「1-4%的人口有聯覺」，後句說連一般人也有音高和顏色的聯覺傾向。選項 (D) "Some studies even show that people may all be synesthetic to some degree"（有些研究甚至顯示所有人可能在某種程度上都有聯覺）引出了「聯覺可能是普遍現象」的延伸觀點，後句則提供具體的普通人例子加以支撐。'
-      }
+    id: '107指考',
+    year: '107', etype: '指考',
+    topic: "法國大革命與食物",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "The causes of the French Revolution are complex and still widely debated\namong historians. However, many scholars agree that food played an\nimportant role in the socio-political upheaval. 31\n\nA main component in the French daily meal, bread was often tied up with\nthe national identity. Studies show that the average 18^(th)-century\nFrench worker spent half his daily wage on bread. In 1788 and 1789,\nhowever, when the grain crops failed two years in a row, the price of\nbread shot up to 88 percent of his earnings. 32 The great majority of\nthe French population was starving. Some even resorted to theft or\nprostitution to stay alive.\n\n33 Started in the 15^(th) century, this tax on salt consumption was\napplied particularly to the poor, while the nobility and the privileged\nwere exempted. The high rate and unequal distribution of the tax\nprovoked widespread illegal dealing in salt by smugglers, leading to\nskyrocketing salt prices.\n\nHowever, the royal court at Versailles was isolated from and indifferent\nto the escalating crisis. The desperate population thus blamed the\nruling class for the famine and economic disturbances. 34 The results\ninclude the storming of the Bastille, a medieval fortress and prison in\nParis, and the eventual beheading of King Louis XVI and his wife, Marie\nAntoinette.\n\n35 Yet, the gabelle and the “bread question” remained among the most\nunsettling social and political issues throughout the Revolutionary and\nNapoleonic periods (1789-1815) and well beyond.",
+    options: [
+        {k:'A', text:"External threats closely shaped the course of the Revolution."}
+        {k:'B', text:"With the collapse of the royal family, calm was restored gradually."}
+        {k:'C', text:"Meanwhile, peasants’ resentment against the gabelle was spreading."}
+        {k:'D', text:"The common household could not afford to buy enough food to meet their basic needs."}
+        {k:'E', text:"The anger quickly built up, culminating in the massive riots of the French Revolution in 1789."}
+        {k:'F', text:"Specifically, bread and salt, two most essential elements in the French cuisine, were at the heart of the conflict."}
+    ],
+    answers: ["F", "D", "C", "E", "B"],
+    priority: [
+        {num:33,order:1,type:"代名詞掛鉤",hook:"後句 \"this tax on salt\" — this tax需要前句先提gabelle",signal:"選(C)：peasants' resentment against the gabelle（引入gabelle）"}
+        {num:34,order:2,type:"因果掛鉤",hook:"後句 \"The results include storming of the Bastille\"",signal:"選(E)：anger quickly built up, culminating in riots（因果鏈）"}
+        {num:32,order:3,type:"因果連結",hook:"前句麵包漲到88%，後句大多數人挨餓",signal:"選(D)：household could not afford food（中間環節）"}
+        {num:31,order:4,type:"承上啟下",hook:"後段分別講麵包和鹽 → 空格需同時預告兩者",signal:"選(F)：bread and salt...at the heart（Specifically承上，兩樣食物啟下）"}
+        {num:35,order:5,type:"轉折掛鉤",hook:"後句 \"Yet...gabelle and bread question remained\" — Yet需要前句有樂觀感",signal:"選(B)：calm was restored gradually（表面平息→Yet轉折）"}
     ]
   },
   {
-    id: 8,
-    year: '108學測',
-    topic: '運動傷害治療',
-    tag: 'contrast',
-    tagLabel: '轉折對比',
-    passage: `While Dr. Weinstein, a surgeon at Dartmouth College, was trying to lift a heavy box, he twisted his back. The pain was agonizing. So he decided to go out for a run. He took an aspirin, iced the injured area, and off he went. When he returned, he felt "pretty good."
-
-[31] When people have sprained a muscle or tendon, they are usually advised not to go right back to exercising until the pain goes away. But Dr. Weinstein says that approach is outdated and counterproductive. In fact, when active people consult him, he usually tells them to just keep exercising.
-
-Dr. Weinstein is not alone in his treatment of sports injury, but the specific advice can differ from specialist to specialist. [32] They nevertheless caution that a cutback may be necessary, such as running shorter distances or going more slowly. Others say the patients may need to engage in sports outside of their usual, main sport (that is, to cross-train), at least some of the time. Still others say the safest thing to do is cross-train all the time until the pain is gone. [33] Their consensus, however, is that unless the injury involves something as serious as a broken bone or a ripped muscle, moderate exercise can actually speed healing.
-
-[34] Thus, more and more patients are now advised to keep moving despite the pain. The rule of thumb, however, is to see a doctor first and get an accurate diagnosis.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '前段以韋恩斯坦醫生「扭傷後去跑步」結尾，後句說「人們通常被建議先不要運動，但韋恩斯坦說這種做法已過時」。空格應描述這個現象有多特別/反直覺。',
-        strategy: 'contrast',
-        strategyLabel: '轉折對比',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'For example, an injured runner might end up cycling and swimming instead of running.',
-          'Over time, researchers have come to realize the importance of exercising when injured.',
-          'Many suggest that most patients can continue with the sport they love.',
-          'This seems to run counter to the common practice.'
-        ],
-        answer: 'D',
-        explanation: '後句說「通常建議不要運動直到疼痛消失」，而韋恩斯坦醫生卻建議「繼續運動」。空格應指出這個做法是反直覺的。選項 (D) "This seems to run counter to the common practice"（這似乎違背了常規做法）完美點出韋恩斯坦方法的反常性，與後句的「一般建議」形成對比，並暗示後文將挑戰這個「常規做法」。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '前句說「不同專家的建議不同」，後句說「他們（某些專家）仍警告可能需要減量（跑短一點或慢一點）」。空格應引出第一類專家的建議——可以繼續原有運動，但需調整。',
-        strategy: 'example',
-        strategyLabel: '列舉觀點',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'For example, an injured runner might end up cycling and swimming instead of running.',
-          'Over time, researchers have come to realize the importance of exercising when injured.',
-          'Many suggest that most patients can continue with the sport they love.',
-          'This seems to run counter to the common practice.'
-        ],
-        answer: 'C',
-        explanation: '後句以 "They nevertheless caution that a cutback may be necessary" 開頭，"They" 指代空格中某些專家。選項 (C) "Many suggest that most patients can continue with the sport they love"（許多人建議大多數病患可以繼續他們喜愛的運動）引出了「可以繼續，但需減量」的第一種專家立場，後句的 "nevertheless" 表示「儘管如此，仍需注意調整」，邏輯連貫。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '前文列舉了多種不同專家的建議（減量、交叉訓練、全程交叉訓練），後句說「他們的共識是...中等強度運動能加速癒合」。空格應描述這些分歧意見，然後引出共識。',
-        strategy: 'bridge',
-        strategyLabel: '承上啟下',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'For example, an injured runner might end up cycling and swimming instead of running.',
-          'Over time, researchers have come to realize the importance of exercising when injured.',
-          'Many suggest that most patients can continue with the sport they love.',
-          'This seems to run counter to the common practice.'
-        ],
-        answer: 'A',
-        explanation: '前文提到「交叉訓練（cross-train）」的建議，後句的 "Their consensus" 需要前句先描述各種不同意見的現象。選項 (A) "For example, an injured runner might end up cycling and swimming instead of running"（例如，受傷的跑者可能改為騎車和游泳）提供了「交叉訓練」的具體例子，承接前文的 cross-train 概念，並過渡到後句的整體共識。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '後句說「越來越多病患被建議繼續活動」，前面整段在論述「適度運動有助癒合」。空格應提供這個建議的科學根據，銜接研究結論與實際應用。',
-        strategy: 'cause',
-        strategyLabel: '因果承接',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'For example, an injured runner might end up cycling and swimming instead of running.',
-          'Over time, researchers have come to realize the importance of exercising when injured.',
-          'Many suggest that most patients can continue with the sport they love.',
-          'This seems to run counter to the common practice.'
-        ],
-        answer: 'B',
-        explanation: '後句的 "Thus" 是因果連接詞，需要前句提供「原因」。後句「越來越多病患被建議繼續活動」，原因需要是「研究發現運動的重要性」。選項 (B) "Over time, researchers have come to realize the importance of exercising when injured"（隨著時間推移，研究人員逐漸認識到受傷時運動的重要性）提供了 "Thus" 所需的因果前提，從「科學研究」→「臨床建議改變」，邏輯完整。'
-      }
+    id: '108指考',
+    year: '108', etype: '指考',
+    topic: "哥白尼 Copernicus",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "Copernicus, founder of modern astronomy, was born in 1473 to a\nwell-to-do merchant family in Torun, Poland. He was sent off to attend\nuniversity in Italy, studying mathematics and optics, and canon law.\nReturning from his studies abroad, Copernicus was appointed to an\nadministrative position in the cathedral of Frauenburg. There he spent a\nsheltered and academic life for the rest of his days.\n\n31 He made his observations from a tower situated on the protective wall\naround the cathedral. His observations were made with the “bare\neyeball,” so to speak, as a hundred years were to pass before the\ninvention of the telescope. In 1530, Copernicus completed his famous\nwork De Revolutionibus, which later played a major role in changing the\nphilosophical view of humankind’s place in the universe. 32\n\nCopernicus died in 1543 and was never to know what a stir his work would\ncause. In his book, he asserted that the Earth rotated on its axis once\ndaily and traveled around the Sun once yearly. 33 People then regarded\nthe Earth as stationary, situated at the center of the universe, with\nthe Sun and all the planets revolving around it. Copernicus’ theory\nchallenged the long-held belief that God created the Heavens and the\nEarth, and could overturn the core values of the Catholic world. 34\nOther ministers quickly followed suit, saying of Copernicus, “This fool\nwants to turn the whole art of astronomy upside down.”\n\nIronically, Copernicus had dedicated his work to Pope Paul III. 35 The\nChurch ultimately banned De Revolutionibus, and the book remained on the\nlist of forbidden reading material for nearly three centuries\nthereafter.",
+    options: [
+        {k:'A', text:"Meanwhile, Copernicus was a lifelong member of the Catholic Church."}
+        {k:'B', text:"The book, however, wasn’t published until two months before his death."}
+        {k:'C', text:"If this act was an attempt to seek the Catholic Church’s approval, it was of no use."}
+        {k:'D', text:"This went against the philosophical and religious beliefs held during medieval times."}
+        {k:'E', text:"Religious leader Martin Luther voiced his opposition to the sun-centered system model."}
+        {k:'F', text:"In his spare time, Copernicus studied the stars and the planets, applying his math knowledge to the mysteries of the night sky."}
+    ],
+    answers: ["F", "B", "D", "E", "C"],
+    priority: [
+        {num:32,order:1,type:"時序掛鉤",hook:"前句1530完成，後句1543去世 → 空格說出版時間",signal:"選(B)：not published until two months before his death（精準嵌入時序）"}
+        {num:35,order:2,type:"因果＋諷刺",hook:"前句Ironically + 後句Church banned → 空格解釋諷刺",signal:"選(C)：If this act was to seek approval, it was of no use（解釋Ironically）"}
+        {num:34,order:3,type:"列舉掛鉤",hook:"後句 \"Other ministers quickly followed suit\" — 誰帶頭？",signal:"選(E)：Martin Luther voiced opposition（第一個反對者）"}
+        {num:33,order:4,type:"對比掛鉤",hook:"前句地球繞太陽，後句 \"People then regarded Earth as stationary\"",signal:"選(D)：This went against...beliefs（連結新理論vs舊信念）"}
+        {num:31,order:5,type:"排除消去",hook:"後句 \"He made observations from a tower\"",signal:"選(F)：In his spare time, Copernicus studied stars（業餘→觀測塔）"}
     ]
   },
   {
-    id: 9,
-    year: '109學測',
-    topic: '膠囊旅館（Capsule Hotel）',
-    tag: 'topic',
-    tagLabel: '主題句結構',
-    passage: `A capsule hotel, also known as a pod hotel, is a unique type of basic, affordable accommodation. Originated in Japan, these hotels were initially meant for business professionals to stay close to populated business districts without spending a lot. [31]
-
-A typical room of a capsule hotel is roughly the length and width of a single bed, with sufficient height for a guest to crawl in and sit up on the bed. [32] Each capsule is equipped with a comfortable mattress, a small light, and sometimes a television or other entertainment options. Such minimalist design is what makes these hotels both inexpensive and efficient.
-
-The first capsule hotel, the Capsule Inn Osaka, opened in 1979. Since then, capsule hotels have quickly spread to other cities and countries. Chains have emerged in Taiwan, Singapore, and even on resort islands like Bali. Pod hotels are also seen in Europe and North America, especially in big cities. [33] Instead of the traditional bare pod-sized style, new chains now feature interior design that appeals to digitally connected travelers.
-
-While offering budget-conscious travelers a unique option, capsule hotels may not be suitable for everyone. Some hotels may not provide air conditioning in the capsules, leading to poor air flow. [34] Also, you may have to share common facilities with other guests. And, if you're worried about feeling claustrophobic in small spaces, you'd better think twice.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '前句說膠囊旅館「最初為商務人士設計」，後文描述膠囊的外觀和設施。空格應說明這類旅館現在的定位或主要用途（從當初的商務用途到現在更廣泛的使用）。',
-        strategy: 'bridge',
-        strategyLabel: '時序發展',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'In response to rising demands, these hotels are embracing a wave of innovation.',
-          'The room\'s thin plastic walls easily transmit the sound of snoring made by neighboring guests.',
-          'The chambers are stacked side-by-side, two units high, with the upper rooms reached by a ladder.',
-          'Today, they provide low-budget, overnight lodging in commerce centers in large cities worldwide.'
-        ],
-        answer: 'D',
-        explanation: '前句說「最初為商務人士設計」，後文介紹膠囊的具體結構。空格需要說明膠囊旅館的現狀，作為從「歷史起源」到「現今狀態」的時間過渡。選項 (D) "Today, they provide low-budget, overnight lodging in commerce centers in large cities worldwide"（如今，它們在全球大城市的商業區提供低價的過夜住宿）以 "Today" 明確指出現在，且內容（低價、過夜、商業區）與後文的具體描述一致。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '前句說膠囊的尺寸（一張床的長寬），後句說「每個膠囊配有床墊、小燈、有時有電視」。空格應描述膠囊的內部結構排列，補充前句的尺寸描述。',
-        strategy: 'example',
-        strategyLabel: '細節補充',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'In response to rising demands, these hotels are embracing a wave of innovation.',
-          'The room\'s thin plastic walls easily transmit the sound of snoring made by neighboring guests.',
-          'The chambers are stacked side-by-side, two units high, with the upper rooms reached by a ladder.',
-          'Today, they provide low-budget, overnight lodging in commerce centers in large cities worldwide.'
-        ],
-        answer: 'C',
-        explanation: '前句描述單個膠囊的尺寸，後句說明膠囊內的設備。空格應補充膠囊的「排列方式」，完成對膠囊旅館空間結構的整體描述。選項 (C) "The chambers are stacked side-by-side, two units high, with the upper rooms reached by a ladder"（房間並排堆疊，兩層高，上層需用梯子進入）是對空間排列的具體說明，承接前句的單室尺寸，引出後句的室內設備。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '前句說膠囊旅館已擴展到全球大城市，後句說「新的連鎖店特色是能吸引數位遊客的室內設計」。"Instead of the traditional bare pod-sized style" 暗示空格應描述這種創新/轉變的背景。',
-        strategy: 'contrast',
-        strategyLabel: '新舊對比',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'In response to rising demands, these hotels are embracing a wave of innovation.',
-          'The room\'s thin plastic walls easily transmit the sound of snoring made by neighboring guests.',
-          'The chambers are stacked side-by-side, two units high, with the upper rooms reached by a ladder.',
-          'Today, they provide low-budget, overnight lodging in commerce centers in large cities worldwide.'
-        ],
-        answer: 'A',
-        explanation: '後句 "Instead of the traditional bare pod-sized style, new chains now feature interior design..."（不再是傳統的簡陋風格，新連鎖店現在有新的室內設計）描述了一種轉型。空格需要引出這個「擁抱創新」的轉變。選項 (A) "In response to rising demands, these hotels are embracing a wave of innovation"（為了回應日益增長的需求，這些旅館正在擁抱一波創新浪潮）完美解釋了「為何」會有這種轉型，後句則具體描述「如何」創新。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '前句說「缺少空調可能導致空氣不流通」，後句說「你可能還要與他人共用設施（廁所）」。空格應是另一個缺點，連結兩個缺點，且與「噪音」或「隔音差」相關。',
-        strategy: 'example',
-        strategyLabel: '缺點列舉',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'In response to rising demands, these hotels are embracing a wave of innovation.',
-          'The room\'s thin plastic walls easily transmit the sound of snoring made by neighboring guests.',
-          'The chambers are stacked side-by-side, two units high, with the upper rooms reached by a ladder.',
-          'Today, they provide low-budget, overnight lodging in commerce centers in large cities worldwide.'
-        ],
-        answer: 'B',
-        explanation: '前後句都在描述缺點，空格也應是缺點。選項 (B) "The room\'s thin plastic walls easily transmit the sound of snoring made by neighboring guests"（薄薄的塑膠牆容易傳遞鄰床旅客的打鼾聲）是一個具體的缺點（噪音），與前後文的缺點列舉形成並列，且「隔音差」是膠囊旅館眾所周知的問題，合乎實際。'
-      }
+    id: '109指考',
+    year: '109', etype: '指考',
+    topic: "角鬥士 Gladiators",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "Gladiators were combatants who fought against criminals, wild animals,\nand each other during the time of the Roman Empire. They were armed with\ndeadly weapons and in most cases fought till either one of them accepted\ndefeat or was killed. 31 Roman people enjoyed the sight of blood and\nviolent death. They crowded into the arenas to watch gladiator games,\njust like we watch football, baseball, and tennis matches today.\n\n32 Some were slaves bought from different lands under Roman control, and\nsome were prisoners of war. Most of the others were volunteers, a group\nwhich once accounted for half of all gladiators. The majority of the\ngladiators were Thracians, Gauls, and Africans. These combatants were\ngenerally skilled fighters and were paid for their services. 33 All of\nthe fighters, both male and female, were well looked after by their\nowners and rewarded after winning fights.\n\nRoman historians sometimes called gladiators hordearii, a Latin term\nwhich means “barley eaters” in English. 34 Chemical analyses of the\nbones found in a gladiator graveyard indicated that the typical food\neaten by gladiators was wheat, barley, and beans. 35 In addition to a\nplant-heavy diet, gladiators drank plant ashes to fortify the body after\nphysical exertion and to promote better bone healing. The diet that\ngladiators followed may be unconventional by modern athletic standards,\nbut in the days of the Romans, this was the diet of heroes.",
+    options: [
+        {k:'A', text:"Gladiators were recruited from different sources."}
+        {k:'B', text:"The origins of gladiators were obscure and mysterious."}
+        {k:'C', text:"Recent research findings suggest that this name was likely literal."}
+        {k:'D', text:"There is evidence to suggest that females also participated in gladiator contests."}
+        {k:'E', text:"Gladiators fought for the entertainment of Rome’s rich and mighty, as well as for the public."}
+        {k:'F', text:"Also, there was little sign of meat or dairy products in the diet of almost all of these professional fighters."}
+    ],
+    answers: ["E", "A", "D", "C", "F"],
+    priority: [
+        {num:32,order:1,type:"段首主題句",hook:"後文列舉三種來源（奴隸/戰俘/自願者）",signal:"選(B)：recruited from different sources（different對應三種列舉）"}
+        {num:34,order:2,type:"段首主題句",hook:"後句 \"Female gladiators...did exist\"",signal:"選(E)：Evidence of female gladiators is rare but does exist（引入女角鬥士）"}
+        {num:31,order:3,type:"功能說明",hook:"後句各階層贊助並花費大量金錢",signal:"選(C)：Gladiator fights had many functions in Roman society"}
+        {num:33,order:4,type:"論點支撐",hook:"前句 \"Contrary to belief...not always end in death\"",signal:"選(A)：expensive but profitable（有價值→不輕易殺）"}
+        {num:35,order:5,type:"排除消去",hook:"後句 \"Not much found outside Italy, but in Britain...\"",signal:"剩(D)：考古證據引言"}
     ]
   },
   {
-    id: 10,
-    year: '110學測',
-    topic: '微笑的文化差異',
-    tag: 'topic',
-    tagLabel: '主題句結構',
-    passage: `Smiling is a gesture that many people engage in dozens of times a day without thought. Most people believe that smiling is an expression of good feelings, a simple way to show happiness and friendliness. But does this hold true across time and cultures?
-
-[31] In the West, for example, portraits of men and women before the 1700s typically depicted them with a serious, unsmiling expression. The absence of smiles stemmed partly from the attempt to hide their decayed teeth caused by poor dental hygiene. More importantly, smiling had long been perceived as a manifestation of a lack of self-control.
-
-Recent studies also show that interpretations of smiling may vary from culture to culture. While in most cultures smiling is associated with positive emotions, in certain cultures the same person can be judged as less intelligent when smiling. [32]
-
-The amount people smile is culturally influenced as well. People smile more when they are from countries that are high in individualism and low in population. [33] Newcomers from different parts of the world are found to smile more. Without a shared language, they often resort to smiling to get along with others.
-
-[34] As many psychologists now point out, this simple gesture is in fact far more complicated than it may appear.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '前段問「微笑跨越時間和文化都成立嗎？」後句說「西方1700年代前的肖像畫都是嚴肅表情」——這是歷史上「不笑」的例子。空格應是這段的主題句，說明微笑在歷史上並非普遍。',
-        strategy: 'topic',
-        strategyLabel: '段首主題句',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'Another crucial factor is a society\'s immigration diversity.',
-          'Various factors have thus contributed to the phenomenon of smiling.',
-          'For most of recorded human history, the open smile has been deeply unfashionable.',
-          'A genuine smile indicates contentment, while a forced smile suggests underlying distress.',
-          'In fact, there is a well-known Russian proverb that goes, "Smiling with no reason is a sign of stupidity."'
-        ],
-        answer: 'C',
-        explanation: '後文描述「1700年代前的西方肖像畫都是嚴肅表情」，這是「微笑曾經不流行」的歷史例子。選項 (C) "For most of recorded human history, the open smile has been deeply unfashionable"（在大部分有記載的人類歷史中，開懷大笑是深深不被看好的）是完美的段首主題句，後文的例子（肖像畫、牙齒問題、自我控制）都是在支撐「不笑是時尚」這個論點。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '前句說「某些文化中，微笑反而讓人顯得不聰明」，後句開始新的段落討論「笑的頻率也受文化影響」。空格應提供一個具體例子來支撐「文化影響對微笑的解讀」。',
-        strategy: 'example',
-        strategyLabel: '舉例支撐',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'Another crucial factor is a society\'s immigration diversity.',
-          'Various factors have thus contributed to the phenomenon of smiling.',
-          'For most of recorded human history, the open smile has been deeply unfashionable.',
-          'A genuine smile indicates contentment, while a forced smile suggests underlying distress.',
-          'In fact, there is a well-known Russian proverb that goes, "Smiling with no reason is a sign of stupidity."'
-        ],
-        answer: 'E',
-        explanation: '前句說某些文化認為「隨便微笑」會被視為不智，選項 (E) "In fact, there is a well-known Russian proverb that goes, \'Smiling with no reason is a sign of stupidity\'"（事實上，有句著名的俄羅斯諺語：「無緣無故地笑是愚蠢的表現」）提供了最具說服力的文化例子，直接支撐前句的論點，"In fact" 強化了這個論點的真實性。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '前句說「來自個人主義強、人口少的國家的人笑得更多」，後句說「來自各地的新移民笑得更多」——移民為何笑？因為沒有共同語言，用微笑溝通。空格應引出移民和微笑的關係。',
-        strategy: 'bridge',
-        strategyLabel: '過渡引入',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'Another crucial factor is a society\'s immigration diversity.',
-          'Various factors have thus contributed to the phenomenon of smiling.',
-          'For most of recorded human history, the open smile has been deeply unfashionable.',
-          'A genuine smile indicates contentment, while a forced smile suggests underlying distress.',
-          'In fact, there is a well-known Russian proverb that goes, "Smiling with no reason is a sign of stupidity."'
-        ],
-        answer: 'A',
-        explanation: '前句討論個人主義和人口因素，後句引入「移民」的概念。選項 (A) "Another crucial factor is a society\'s immigration diversity"（另一個關鍵因素是社會的移民多樣性）以 "Another... factor" 的句型自然承接前句的「個人主義因素」，並引出後文對移民與微笑的討論。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '後句說「這個簡單的手勢其實遠比表面上看起來複雜得多」。這是文章的結論段。空格應總結全文提到的複雜性，為結論做鋪墊。',
-        strategy: 'summary',
-        strategyLabel: '總結段落',
-        options: ['A','B','C','D','E'],
-        optionTexts: [
-          'Another crucial factor is a society\'s immigration diversity.',
-          'Various factors have thus contributed to the phenomenon of smiling.',
-          'For most of recorded human history, the open smile has been deeply unfashionable.',
-          'A genuine smile indicates contentment, while a forced smile suggests underlying distress.',
-          'In fact, there is a well-known Russian proverb that goes, "Smiling with no reason is a sign of stupidity."'
-        ],
-        answer: 'B',
-        explanation: '後句「這個簡單的手勢其實遠比看起來複雜」是文章的結論。選項 (B) "Various factors have thus contributed to the phenomenon of smiling"（各種因素因此促成了微笑這個現象）用 "thus" 總結全文討論的歷史、文化、個人主義、移民等多種因素，引出後句的「比看起來更複雜」這個最終結論，是完美的總結句。'
-      }
+    id: '110指考',
+    year: '110', etype: '指考',
+    topic: "藝術家 Niki de Saint Phalle",
+    tagClass: 'tag-exam', tagLabel: '指考',
+    optCount: 6, nQ: 5,
+    passage: "Niki de Saint Phalle, one of the most famous artists of the 20^(th)\ncentury, was a French-American born in 1930. She was brought up in a\nvery conservative family, and yet, she rejected the staid, conservative\nvalues of her family to pursue a career in painting. 31 Fortunately,\npainting offered her an effective therapy and a way to develop as an\nartist. Her famous “Nana” series gained universal praise. It is a\ntestimony to the glory of women. 32 Some of these sculptures are very\nbig, “so that men would look small next to them.” Saint Phalle used\nvivid colors in these works and her female subjects dance cheerfully and\nmerrily. 33\n\nSaint Phalle’s sculptural park, “The Tarot Garden,” inspired by Tarot\ncards, is situated in the Italian province of Tuscany. 34 The park\ncontains sculptures of the symbols found on Tarot cards. The brightly\ncolored combinations of buildings and sculptures reflect the\nmetaphysical qualities represented by the 22 main tarot cards. The\nsculptures, however, have nothing to do with fortune telling. 35\n\nSaint Phalle passed away on May 21, 2002, in San Diego, California, at\nthe age of 71. Her death meant the loss of a woman of diverse creative\ntalents.",
+    options: [
+        {k:'A', text:"The series is mostly composed of life-size dolls of women in various roles such as brides and new mothers."}
+        {k:'B', text:"Work on the garden began in 1979, and it was officially opened to the public in May 1998."}
+        {k:'C', text:"Many modern women artists create sculptures that have become iconic pieces of feminist movement."}
+        {k:'D', text:"Through these joyful and powerful images of Nana, the artist sends a positive message to all women."}
+        {k:'E', text:"Her rebelliousness created a series of conflicts with her family, which led to a nervous breakdown at age 23."}
+        {k:'F', text:"Instead, the works focus on the elements of life experience, personality, and self-knowledge that the cards refer to."}
+    ],
+    answers: ["E", "A", "D", "B", "F"],
+    priority: [
+        {num:31,order:1,type:"因果掛鉤",hook:"後句 \"Fortunately, painting offered her therapy\" — Fortunately暗示前句有困難",signal:"選(E)：Her rebelliousness...led to nervous breakdown（說明困難來源）"}
+        {num:35,order:2,type:"轉折掛鉤",hook:"前句 \"sculptures have nothing to do with fortune telling\"",signal:"選(F)：Instead, works focus on life experience（Instead直接回應「不是算命」）"}
+        {num:32,order:3,type:"代名詞掛鉤",hook:"後句 \"Some of these sculptures are very big\" — these需要前句先提",signal:"選(A)：series composed of life-size dolls of women（these = Nana dolls）"}
+        {num:33,order:4,type:"段落總結",hook:"前文介紹Nana系列視覺特色（vivid colors, dance cheerfully）",signal:"選(D)：Through joyful images, artist sends positive message（總結Nana意義）"}
+        {num:34,order:5,type:"時序掛鉤",hook:"前句說Tarot Garden在Tuscany，後句說park contains sculptures",signal:"選(B)：Work began 1979, opened 1998（補充公園時序背景）"}
     ]
   },
   {
-    id: 11,
-    year: '115學測',
-    topic: '日本盂蘭盆節（Obon）',
-    tag: 'time',
-    tagLabel: '時序流程',
-    passage: `Obon is a Japanese Buddhist festival that has been celebrated for over 500 years. Observed for three days in August, the festival honors the spirits of deceased ancestors. According to Buddhist belief, the spirits are able to visit the living world during this time.
-
-On the first day, family members light a small bonfire called mukaebi at their doorstep. [31] On the second day, people gather at community centers or parks to perform the Bon Odori. [32] The dancing can last for hours, and many people wear traditional Japanese yukata while dancing.
-
-[33] The festivities conclude as they began: with fire. Family members light another bonfire, called okuribi, to bid farewell to the ancestral spirits and guide them back to the spiritual world.
-
-Obon is not just a religious festival, however; it is also an opportunity for families to reunite. [34] For many Japanese, Obon is one of the most important times of the year, when they return to their hometown to visit their ancestors' graves and spend time with their loved ones.`,
-    questions: [
-      {
-        num: 31, blank: 31,
-        hint: '前句說「第一天，家人點燃迎火（mukaebi）歡迎祖先靈魂」，後句說「第二天，人們聚集跳盂蘭盆舞（Bon Odori）」。空格應描述「迎火之後、跳舞之前」發生的事，即第一天的另一個活動。',
-        strategy: 'time',
-        strategyLabel: '時序連貫',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'This fire is believed to be a welcoming signal for the ancestral spirits to find their way home.',
-          'The Bon Odori dance is said to have originated as a way to welcome the spirits of the dead.',
-          'Obon concludes with another bonfire, called okuribi, which guides the spirits back.',
-          'Many companies and schools give their employees and students time off during this period.'
-        ],
-        answer: 'A',
-        explanation: '前句描述點燃迎火（mukaebi），後句跳到第二天的舞蹈。空格應說明迎火的意義或目的，補完第一天的活動描述。選項 (A) "This fire is believed to be a welcoming signal for the ancestral spirits to find their way home"（這個火被認為是歡迎祖先靈魂找到回家路的信號）解釋了迎火的宗教意義，"This fire" 呼應前句的 mukaebi，邏輯自然。'
-      },
-      {
-        num: 32, blank: 32,
-        hint: '前句說「人們聚集跳盂蘭盆舞」，後句說「跳舞可以持續數小時，很多人穿著傳統浴衣」。空格應補充舞蹈的起源或目的，讓後句的細節描述有所依附。',
-        strategy: 'example',
-        strategyLabel: '背景補充',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'This fire is believed to be a welcoming signal for the ancestral spirits to find their way home.',
-          'The Bon Odori dance is said to have originated as a way to welcome the spirits of the dead.',
-          'Obon concludes with another bonfire, called okuribi, which guides the spirits back.',
-          'Many companies and schools give their employees and students time off during this period.'
-        ],
-        answer: 'B',
-        explanation: '前句「人們聚集跳盂蘭盆舞」引出這個舞蹈，後句描述跳舞的細節（時間長、穿浴衣）。空格應補充說明這個舞蹈的起源和文化意義。選項 (B) "The Bon Odori dance is said to have originated as a way to welcome the spirits of the dead"（盂蘭盆舞據說起源於迎接亡者靈魂的方式）提供了文化背景，"is said to have originated" 的語氣也符合介紹傳統習俗的風格。'
-      },
-      {
-        num: 33, blank: 33,
-        hint: '後句「慶典如開始時一樣以火結束：家人點燃送火（okuribi）送別祖先靈魂」。後句已描述結束時的送火。空格應描述「最後一天」的到來或節日即將結束的時間節點。',
-        strategy: 'time',
-        strategyLabel: '時序標記',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'This fire is believed to be a welcoming signal for the ancestral spirits to find their way home.',
-          'The Bon Odori dance is said to have originated as a way to welcome the spirits of the dead.',
-          'Obon concludes with another bonfire, called okuribi, which guides the spirits back.',
-          'Many companies and schools give their employees and students time off during this period.'
-        ],
-        answer: 'C',
-        explanation: '後句說「慶典如開始時一樣以火結束」，並描述送火（okuribi）。選項 (C) "Obon concludes with another bonfire, called okuribi, which guides the spirits back"（盂蘭盆節以另一個篝火okuribi告終，引導靈魂回去）實際上就是後句的內容，故需重新確認。注意：在實際考題中，選項 (C) 的內容會比後句更簡短，後句是對它的展開說明。'
-      },
-      {
-        num: 34, blank: 34,
-        hint: '前句說「盂蘭盆節不只是宗教節日，也是家人團聚的機會」，後句說「很多日本人會回鄉掃墓和與親人共度時光」。空格應說明這個節日的實際社會意義——很多人趁機請假回家。',
-        strategy: 'example',
-        strategyLabel: '社會意義補充',
-        options: ['A','B','C','D'],
-        optionTexts: [
-          'This fire is believed to be a welcoming signal for the ancestral spirits to find their way home.',
-          'The Bon Odori dance is said to have originated as a way to welcome the spirits of the dead.',
-          'Obon concludes with another bonfire, called okuribi, which guides the spirits back.',
-          'Many companies and schools give their employees and students time off during this period.'
-        ],
-        answer: 'D',
-        explanation: '前句說「盂蘭盆節是家人團聚的機會」，後句說「很多人回鄉掃墓」。空格應說明這種「團聚」在實際生活中如何發生——社會給予假期支持。選項 (D) "Many companies and schools give their employees and students time off during this period"（許多公司和學校在這段期間給員工和學生放假）解釋了「為什麼人們能夠回鄉」的社會背景，銜接「宗教/文化意義」和「實際行動」。'
-      }
+    id: '111學測',
+    year: '111', etype: '學測',
+    topic: "日本盂蘭盆節 Obon",
+    tagClass: 'tag-gsat', tagLabel: '學測',
+    optCount: 5, nQ: 4,
+    passage: "Obon, or the Bon Festival, is a Japanese holiday that honors the spirits of the dead. 31 The festival usually lasts for four to five days in August. During this period, many people travel back to their hometowns and spend time with loved ones, both past and present.\n\nThough not a national holiday, Obon is surely one of the most traditional events of the year. Celebration often begins with mukaebi (welcoming fire), during which people make a small bonfire in front of their house to guide spirits upon their return back home. 32 Food offerings are presented at house altars and temples. Some regions prepare horses made of cucumbers and cows made of eggplants, hoping that the spirits will come back to Earth quickly, on a horse, and leave slowly, riding the cow.\n\n33 Paper lanterns and offerings are sent floating down rivers to accompany the ancestors back to their resting place. Many areas will also organize bon-odori dances. The style of the dances varies from region to region but is normally based on the rhythms of taiko drums. Performers usually play on a tall stage with lanterns and banners strung all around. Participants, often dressed in light cotton kimonos, are encouraged to dance to the music around the stage. 34 Originally dedicated to the deceased, the dances have now become a symbol of the summer festival themselves.",
+    options: [
+        {k:'A', text:"Some people also visit the cemetery to clean up the family graves and pray for their ancestors."}
+        {k:'B', text:"Such festive activities are usually held in parks, temples, and other public places around Japan."}
+        {k:'C', text:"Obon concludes with another bonfire, okuribi, lighting up the sky to see the ancestors' spirits off."}
+        {k:'D', text:"Originating from the Chinese Ghost Festival, this annual event has evolved into a time of family reunion."}
+    ],
+    answers: ["D", "A", "C", "B"],
+    priority: [
+        {num:31,order:1,type:"代名詞掛鉤",hook:"後句 \"The festival usually lasts for four to five days\" — 需要前句先介紹這個節日的起源",signal:"選(D)：Originating from Chinese Ghost Festival...evolved into family reunion（D引出節日背景）"}
+        {num:32,order:2,type:"舉例延伸",hook:"前句點火迎祖先，後句說供品（Food offerings）",signal:"選(A)：visit cemetery, clean graves（A是另一個祭祖活動，承接迎火）"}
+        {num:33,order:3,type:"時序掛鉤",hook:"後句說紙燈籠送走祖先 → 這是節日的結束儀式",signal:"選(C)：Obon concludes with okuribi（C描述結束，引出送火）"}
+        {num:34,order:4,type:"排除消去",hook:"後句 \"Originally dedicated to deceased, dances have become symbol\"",signal:"選(B)：festive activities held in parks, temples（B說明舞蹈場地，承接上文）"}
+    ]
+  },
+  {
+    id: '112學測',
+    year: '112', etype: '學測',
+    topic: "聯覺 Synesthesia",
+    tagClass: 'tag-gsat', tagLabel: '學測',
+    optCount: 5, nQ: 4,
+    passage: "Have you ever thought of “coloring” the names of the days of the week?\nWhen you listen to someone speaking, do you see a rainbow of colors? Or\nperhaps Mozart’s music tastes like an apple pie to you? If so, it is\nvery likely that you have synesthesia.\n\nSynesthesia is a condition in which people’s senses intermix. In some\ncases, people with synesthesia may experience colors when they hear,\nread, or even think of letters and numbers. In others, words can trigger\na real sensation of taste on their tongue.\n\n31 In the early 1990s, however, scientists noticed that synesthetic\ncolors do not change over time. When asked what color is evoked by a\nletter or number, synesthetic people would persistently give the same\nanswer even if tested months or years apart. 32 The most compelling\nsupport, however, comes from brain scans, which show that color\nprocessing areas in the brain light up when these people listen to\ncertain words.\n\nIs synesthesia genetically inherited or acquired after birth? Scientists\nagree that synesthesia has a genetic basis, because it frequently runs\nin families. But an actual synesthesia gene (or genes) has not been\nidentified yet. 33 For example, the flavors people with taste-word\nsynesthesia experience are usually childhood flavors, such as chocolate\nor strawberries. Also, people with color-music synesthesia more often\nthan not have had early musical training.\n\nOnce thought to be extremely rare, synesthesia is now found to affect\nabout one to four percent of the population. 34 As is often observed,\nmost of us tend to associate lower notes with darker colors and higher\nnotes with brighter colors. Researchers further point out that in most\npeople synesthesia is active only during the first months of their\ninfancy, while this ability remains forever in certain individuals.",
+    options: [
+        {k:'A', text:"This consistency serves as a proof that synesthesia is real."}
+        {k:'B', text:"Meanwhile, environmental influences seem to shape a person’s synesthesia."}
+        {k:'C', text:"People with synesthesia used to be accused of making their experiences up."}
+        {k:'D', text:"Some studies even show that people may all be synesthetic to some degree."}
+    ],
+    answers: ["C", "A", "B", "D"],
+    priority: [
+        {num:31,order:1,type:"轉折掛鉤",hook:"後句 \"In the early 1990s, however, scientists noticed...\" — however前需要舊觀點",signal:"選(C)：used to be accused of making experiences up（舊觀點=被說假的）"}
+        {num:32,order:2,type:"關鍵字重疊",hook:"前句 \"persistently give the same answer\" + 後句 \"most compelling support\"",signal:"選(A)：This consistency serves as a proof（consistency呼應same answer）"}
+        {num:33,order:3,type:"舉例掛鉤",hook:"後句 \"For example, flavors...are usually childhood flavors\"",signal:"選(B)：environmental influences seem to shape synesthesia（概括→For example支撐）"}
+        {num:34,order:4,type:"段落延伸",hook:"後句 \"most of us tend to associate lower notes with darker colors\"",signal:"選(D)：people may all be synesthetic to some degree（引出普遍性）"}
+    ]
+  },
+  {
+    id: '113學測',
+    year: '113', etype: '學測',
+    topic: "運動傷害治療",
+    tagClass: 'tag-gsat', tagLabel: '學測',
+    optCount: 5, nQ: 4,
+    passage: "While Dr. Weinstein, a surgeon at Dartmouth College, was trying to lift\na heavy box, he twisted his back. The pain was agonizing. The surgeon\ncould not sit, and when he lay down he could barely get up. So he\ndecided to go out for a run. He took an aspirin, iced the injured area,\nand off he went. When he returned, he felt “pretty good.”\n\n31 When people have sprained a muscle or tendon, they are usually\nadvised not to go right back to exercising until the pain goes away. But\nDr. Weinstein says that approach is outdated and counterproductive. In\nfact, when active people consult him, he usually tells them to just keep\nexercising.\n\nDr. Weinstein is not alone in his treatment of sports injury, but the\nspecific advice can differ from specialist to specialist. 32 They\nnevertheless caution that a cutback may be necessary, such as running\nshorter distances or going more slowly. Others say the patients may need\nto engage in sports outside of their usual, main sport (that is, to\ncross-train), at least some of the time. Still others say the safest\nthing to do is cross-train all the time until the pain is gone. 33 Their\nconsensus, however, is that unless the injury involves something as\nserious as a broken bone or a ripped muscle, moderate exercise can\nactually speed healing.\n\n34 Thus, more and more patients are now advised to keep moving despite\nthe pain. The rule of thumb, however, is to see a doctor first and get\nan accurate diagnosis. If a serious injury is ruled out and the pain is\nnot getting worse after exercising, then the exercise “makes a lot of\nsense.”",
+    options: [
+        {k:'A', text:"For example, an injured runner might end up cycling and swimming instead of running."}
+        {k:'B', text:"Over time, researchers have come to realize the importance of exercising when injured."}
+        {k:'C', text:"Many suggest that most patients can continue with the sport they love."}
+        {k:'D', text:"This seems to run counter to the common practice."}
+    ],
+    answers: ["D", "C", "A", "B"],
+    priority: [
+        {num:31,order:1,type:"對比掛鉤",hook:"後句 \"When people...usually advised not to exercise...But Weinstein says outdated\"",signal:"選(D)：This seems to run counter to the common practice（反直覺點明）"}
+        {num:34,order:2,type:"因果掛鉤",hook:"後句 \"Thus, more patients advised to keep moving\" — Thus需要前因",signal:"選(B)：researchers realized importance of exercising when injured"}
+        {num:32,order:3,type:"代名詞掛鉤",hook:"後句 \"They nevertheless caution that a cutback may be necessary\" — They指哪些專家",signal:"選(C)：Many suggest patients can continue with sport they love（引出這批專家）"}
+        {num:33,order:4,type:"排除消去",hook:"後句 \"Their consensus, however\" — 前面列了多種意見，空格是具體例子",signal:"選(A)：injured runner might end up cycling（cross-train具體例子）"}
+    ]
+  },
+  {
+    id: '114學測',
+    year: '114', etype: '學測',
+    topic: "膠囊旅館 Capsule Hotel",
+    tagClass: 'tag-gsat', tagLabel: '學測',
+    optCount: 5, nQ: 4,
+    passage: "A capsule hotel, also known as a pod hotel, is a unique type of basic,\naffordable accommodation. Originated in Japan, these hotels were\ninitially meant for business professionals to stay close to populated\nbusiness districts without spending a lot. 31\n\nA typical room of a capsule hotel is roughly the length and width of a\nsingle bed, with sufficient height for a guest to crawl in and sit up on\nthe bed. The walls of each capsule may be made of wood, metal or any\nrigid material, but are often fiberglass or plastic. 32 Each capsule is\nequipped with a comfortable mattress, a small light, and sometimes a\ntelevision or other entertainment options. Such minimalist design is\nwhat makes these hotels both inexpensive and efficient, providing only\nthe essential elements for a good night sleep.\n\nThe first capsule hotel, the Capsule Inn Osaka, opened in 1979. Since\nthen, capsule hotels have quickly spread to other cities and countries.\nChains have emerged in Taiwan, Singapore, and even on resort islands\nlike Bali. Pod hotels are also seen in Europe and North America,\nespecially in big cities like New York, London, and Paris. 33 Instead of\nthe traditional bare pod-sized style, new chains now feature interior\ndesign that appeals to digitally connected travelers from around the\nworld. Guests may enjoy facilities such as free Wi-Fi, mobile charging,\nand even a soundless alarm system that raises the sleeping guests into a\nseated position while gradually brightening the lights.\n\nWhile offering budget-conscious travelers a unique option, capsule\nhotels may not be suitable for everyone. Some hotels may not provide air\nconditioning in the capsules, leading to poor air flow. 34 Also, you may\nhave to share common facilities (such as bathrooms) with other guests.\nAnd, if you’re worried about feeling claustrophobic in small spaces,\nyou’d better think twice before making a reservation.",
+    options: [
+        {k:'A', text:"In response to rising demands, these hotels are embracing a wave of innovation."}
+        {k:'B', text:"The room’s thin plastic walls easily transmit the sound of snoring made by neighboring guests."}
+        {k:'C', text:"The chambers are stacked side-by-side, two units high, with the upper rooms reached by a ladder."}
+        {k:'D', text:"Today, they provide low-budget, overnight lodging in commerce centers in large cities worldwide."}
+    ],
+    answers: ["D", "C", "A", "B"],
+    priority: [
+        {num:33,order:1,type:"轉折＋創新",hook:"後句 \"Instead of traditional bare style, new chains feature...\" — 需要引入創新趨勢",signal:"選(A)：embracing a wave of innovation（為後句新設計做鋪墊）"}
+        {num:34,order:2,type:"缺點列舉",hook:"前句空調不足，後句共用設施 → 空格是另一缺點",signal:"選(B)：thin plastic walls transmit snoring（隔音差）"}
+        {num:32,order:3,type:"空間描述",hook:"前句單室尺寸，後句室內設備 → 空格說排列方式",signal:"選(C)：stacked side-by-side, two units high（補充空間結構）"}
+        {num:31,order:4,type:"時序掛鉤",hook:"前句最初商務用，後段說設施 → 空格說現在定位",signal:"選(D)：Today, provide low-budget lodging in large cities（Today轉時序）"}
+    ]
+  },
+  {
+    id: '115學測',
+    year: '115', etype: '學測',
+    topic: "微笑的文化差異",
+    tagClass: 'tag-gsat', tagLabel: '學測',
+    optCount: 5, nQ: 4,
+    passage: "Smiling is a gesture that many people engage in dozens of times a day\nwithout thought. Most people believe that smiling is an expression of\ngood feelings, a simple way to show happiness and friendliness. But does\nthis hold true across time and cultures?\n\n31 In the West, for example, portraits of men and women before the 1700s\ntypically depicted them with a serious, unsmiling expression. The\nabsence of smiles stemmed partly from the attempt to hide their decayed\nteeth caused by poor dental hygiene. More importantly, smiling and\nlaughter had long been perceived in the society as manifestations of a\nlack of self-control and good manners. Paintings with white-toothed\nsmiles emerged after the 1700s, with the gradual rise of a culture that\nvalued perception and responsiveness.\n\nRecent studies also show that interpretations of smiling may vary from\nculture to culture. While in most cultures smiling is associated with\npositive emotions, in certain cultures the same person can be judged as\nless intelligent when smiling. 32\n\nThe amount people smile is culturally influenced as well. People smile\nmore when they are from countries that are high in individualism and low\nin population. These are often places where the needs and rights of the\nindividual take precedence over those of the group. 33 Newcomers from\ndifferent parts of the world are found to smile more. Without a shared\nlanguage, they often resort to smiling to get along with others. For\nthem, smiling is a straightforward way to indicate that one is reliable\nand trustworthy.\n\n34 As many psychologists now point out, this simple gesture is in fact\nfar more complicated than it may appear.",
+    options: [
+        {k:'A', text:"Another crucial factor is a society’s immigration diversity."}
+        {k:'B', text:"Various factors have thus contributed to the phenomenon of smiling."}
+        {k:'C', text:"For most of recorded human history, the open smile has been deeply unfashionable."}
+        {k:'D', text:"A genuine smile indicates contentment, while a forced smile suggests underlying distress."}
+        {k:'E', text:"In fact, there is a well-known Russian proverb that goes, “Smiling with no reason is a sign of stupidity.”"}
+    ],
+    answers: ["C", "E", "A", "B"],
+    priority: [
+        {num:32,order:1,type:"舉例掛鉤",hook:"前句某些文化笑會被視為不智 → 需要具體文化例子",signal:"選(E)：Russian proverb \"Smiling with no reason is stupidity\"（直接舉例）"}
+        {num:33,order:2,type:"段首主題句",hook:"後句 \"Newcomers from different parts smile more\"",signal:"選(A)：Another crucial factor is immigration diversity（Another承接個人主義因素）"}
+        {num:34,order:3,type:"總結掛鉤",hook:"後句 \"this simple gesture is far more complicated\" — 需要總結前文複雜性",signal:"選(B)：Various factors have thus contributed（thus總結）"}
+        {num:31,order:4,type:"段首主題句",hook:"後文歷史例子（1700年代前不笑）",signal:"選(C)：For most of recorded history, open smile has been unfashionable"}
     ]
   }
 ];
 
-// 策略標籤對應
-const STRATEGY_META = {
-  pronoun:   {label:'代名詞指代', color:'var(--blue)',   bg:'var(--blue-bg)',   border:'var(--blue-b)'},
-  contrast:  {label:'轉折對比',   color:'var(--red)',    bg:'var(--red-bg)',    border:'var(--red-b)'},
-  example:   {label:'舉例支撐',   color:'var(--amber)',  bg:'var(--amber-bg)', border:'#4a2e08'},
-  time:      {label:'時序連貫',   color:'var(--teal)',   bg:'var(--teal-bg)',  border:'var(--teal-b)'},
-  bridge:    {label:'承上啟下',   color:'var(--purple)', bg:'var(--purple-bg)',border:'var(--purple-b)'},
-  topic:     {label:'段首主題句', color:'var(--gold)',   bg:'var(--gold-bg)',  border:'var(--gold-dim)'},
-  definition:{label:'定義說明',   color:'var(--green)',  bg:'var(--green-bg)', border:'var(--green-b)'},
-  support:   {label:'論點支撐',   color:'var(--teal)',   bg:'var(--teal-bg)',  border:'var(--teal-b)'},
-  cause:     {label:'因果關係',   color:'var(--amber)',  bg:'var(--amber-bg)', border:'#4a2e08'},
-  summary:   {label:'總結歸納',   color:'var(--purple)', bg:'var(--purple-bg)',border:'var(--purple-b)'},
+// ── localStorage ──
+function loadScores(){try{return JSON.parse(localStorage.getItem('ps2_scores')||'{}');}catch(e){return{};}}
+function saveScores(s){try{localStorage.setItem('ps2_scores',JSON.stringify(s));}catch(e){}}
+
+// ── STATE ──
+let state = {
+  lessonId: null,
+  mode: 'priority',       // 'priority' | 'seq'
+  qOrder: [],             // 題號順序（priority或sequential）
+  qIdx: 0,               // 當前在qOrder中的位置
+  answered: {},           // num -> {chosen, correct}
+  scores: loadScores(),
+  currentTab: 'all',
 };
 
-const TAG_META = {
-  pronoun:  {label:'代名詞指代', cls:'tag-pronoun'},
-  contrast: {label:'轉折對比',   cls:'tag-contrast'},
-  example:  {label:'主題句舉例', cls:'tag-example'},
-  time:     {label:'時序流程',   cls:'tag-time'},
-  bridge:   {label:'承上啟下',   cls:'tag-summary'},
-  topic:    {label:'段首主題句', cls:'tag-example'},
-};
+// ── SCREENS ──
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
+function goHome(){buildHome();showScreen('scr-home');}
+function confirmBack(){if(confirm('確定離開？進度不會保存。'))goHome();}
 
-// ══════════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════════
-let progress = {};  // lessonId -> { done, score }
-let cur = { lessonId:null, qIdx:0, correct:0, wrong:0, wrongList:[], phase:'quiz' };
-let curLesson = null;
-
-function loadProgress(){
-  try { progress = JSON.parse(localStorage.getItem('ps_progress')||'{}'); } catch(e){ progress={}; }
-}
-function saveProgress(){ localStorage.setItem('ps_progress', JSON.stringify(progress)); }
-
-// ══════════════════════════════════════════════
-// SCREENS
-// ══════════════════════════════════════════════
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
-  window.scrollTo(0,0);
+// ── HOME ──
+function filterLessons(tab){
+  state.currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    b.classList.toggle('active', ['all','指考','學測'][i]===tab);
+  });
+  buildHome();
 }
 
-function toggleStep(card){
-  card.classList.toggle('open');
-}
-
-// ══════════════════════════════════════════════
-// HOME: BUILD LESSON GRID
-// ══════════════════════════════════════════════
 function buildHome(){
-  loadProgress();
   const grid = document.getElementById('lesson-grid');
-  grid.innerHTML = '';
-  let doneCount = 0;
-  LESSONS.forEach(lesson=>{
-    const p = progress[lesson.id];
-    const done = p && p.done;
-    if(done) doneCount++;
-    const tag = TAG_META[lesson.tag] || {label:lesson.tagLabel, cls:'tag-topic'};
-    const div = document.createElement('div');
-    div.className = 'lc' + (done?' lc-done':'');
-    div.innerHTML = `
-      <div class="lc-num">${lesson.year}${done?`<span class="lc-score">${p.score}/${p.total}</span>`:''}</div>
-      <div class="lc-title">${lesson.topic}</div>
-      <div class="lc-desc">${lesson.questions.length} 題</div>
-      <span class="lc-tag ${tag.cls}">${tag.label}</span>
-    `;
-    div.onclick = () => startLesson(lesson.id);
-    grid.appendChild(div);
-  });
-  document.getElementById('home-progress').textContent = `${doneCount} / ${LESSONS.length} 完成`;
-}
+  const filtered = state.currentTab === 'all'
+    ? LESSONS
+    : LESSONS.filter(l => l.etype === state.currentTab);
 
-// ══════════════════════════════════════════════
-// QUIZ
-// ══════════════════════════════════════════════
-function startLesson(id){
-  curLesson = LESSONS.find(l=>l.id===id);
-  if(!curLesson) return;
-  cur = { lessonId:id, qIdx:0, correct:0, wrong:0, wrongList:[], phase:'quiz' };
-  document.getElementById('quiz-lesson-title').textContent = `${curLesson.year} — ${curLesson.topic}`;
-  showScreen('scr-quiz');
-  renderQuestion();
-}
-
-function renderQuestion(){
-  const q = curLesson.questions[cur.qIdx];
-  const total = curLesson.questions.length;
-  document.getElementById('prog-fill').style.width = `${(cur.qIdx/total)*100}%`;
-  document.getElementById('quiz-score-display').textContent = `第 ${cur.qIdx+1} / ${total} 題`;
-
-  const sm = STRATEGY_META[q.strategy] || STRATEGY_META['topic'];
-  const passageHtml = buildPassageHtml(curLesson.passage, q.blank);
-
-  let html = `
-    <div class="phase-badge" style="background:${sm.bg};color:${sm.color};border:1px solid ${sm.border};">${sm.label}</div>
-    <div class="passage">${passageHtml}</div>
-    <div class="hint-box">
-      <div class="hint-label">解題提示</div>
-      ${q.hint}
-    </div>
-    <div class="q-stem"><span class="q-blank-num">${q.num}</span>請選出最適合填入的選項：</div>
-    <div class="options" id="opts">
-  `;
-  q.options.forEach((letter,i)=>{
-    html += `<div class="opt" onclick="selectOpt(this,'${letter}')">
-      <span class="opt-letter">${letter}</span>
-      <span>${q.optionTexts[i]}</span>
+  grid.innerHTML = filtered.map(l => {
+    const sc = state.scores[l.id];
+    const done = sc && sc.correct + sc.wrong >= l.nQ;
+    const scoreTag = sc ? `<span class="lc-score">${sc.correct}/${l.nQ}</span>` : '';
+    return `<div class="lc ${done?'lc-done':''}" onclick="startLesson('${l.id}')">
+      <div class="lc-num">${l.year}${l.etype}${scoreTag}</div>
+      <div class="lc-title">${l.topic}</div>
+      <div class="lc-desc">${l.optCount}選${l.nQ}題</div>
+      <span class="lc-tag ${l.tagClass}">${l.tagLabel}</span>
     </div>`;
-  });
-  html += `</div>`;
+  }).join('');
+}
+
+// ── START LESSON ──
+function startLesson(id){
+  const l = LESSONS.find(x=>x.id===id);
+  if(!l) return;
+  state.lessonId = id;
+  state.qIdx = 0;
+  state.answered = {};
+  buildQOrder(l);
+  document.getElementById('q-title').textContent = `${l.year}${l.etype} — ${l.topic}`;
+  showScreen('scr-quiz');
+  renderQuiz();
+}
+
+function buildQOrder(l){
+  if(state.mode === 'priority'){
+    // priority順序
+    const nums = l.priority.map(p=>p.num);
+    // 補上沒在priority裡的題號（以防萬一）
+    for(let i=31;i<31+l.nQ;i++){if(!nums.includes(i))nums.push(i);}
+    state.qOrder = nums;
+  } else {
+    // 題號順序
+    state.qOrder = Array.from({length:l.nQ},(_,i)=>31+i);
+  }
+}
+
+function setMode(mode){
+  state.mode = mode;
+  document.getElementById('mode-priority').classList.toggle('active', mode==='priority');
+  document.getElementById('mode-seq').classList.toggle('active', mode==='seq');
+  if(state.lessonId){
+    const l = LESSONS.find(x=>x.id===state.lessonId);
+    buildQOrder(l);
+    state.qIdx = 0;
+    state.answered = {};
+    renderQuiz();
+  }
+}
+
+// ── RENDER QUIZ ──
+function renderQuiz(){
+  const l = LESSONS.find(x=>x.id===state.lessonId);
+  const total = state.qOrder.length;
+  const idx = state.qIdx;
+  const currentNum = state.qOrder[idx];
+
+  // progress
+  const done = Object.keys(state.answered).length;
+  document.getElementById('prog-fill').style.width = `${(done/total)*100}%`;
+  document.getElementById('q-meta').textContent = `${done}/${total}`;
+
+  let html = '';
+
+  // 文章（顯示所有空格，已答的顯示答案）
+  html += buildPassageHtml(l);
+
+  // Priority panel
+  if(state.mode === 'priority'){
+    html += `<div class="priority-panel">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-xs);text-transform:uppercase;margin-bottom:8px;">解題優先順序</div>`;
+    for(const p of l.priority){
+      const isDone = state.answered[p.num] !== undefined;
+      const isCurrent = p.num === currentNum;
+      html += `<div class="priority-item ${isCurrent?'current-q':''} ${isDone?'done-q':''}" onclick="jumpToQ(${p.num})">
+        <div class="pi-head">
+          <div class="pi-order">${p.order}</div>
+          <div class="pi-num">第${p.num}題</div>
+          <span class="pi-type">${p.type}</span>
+          ${isDone?'<span class="pi-checkmark">✓</span>':''}
+        </div>
+        <div class="pi-hook">🔍 ${p.hook}</div>
+        ${isCurrent?`<div class="pi-signal">→ ${p.signal}</div>`:''}
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // 當前題目
+  html += buildQuestionHtml(l, currentNum);
+
   document.getElementById('quiz-content').innerHTML = html;
 }
 
-function buildPassageHtml(passage, targetBlank){
-  // Replace [31]-[35] with blank spans
-  let html = passage.replace(/\[(\d+)\]/g, (match, num)=>{
-    const n = parseInt(num);
-    if(n === targetBlank){
-      return `<span class="blank" id="blank-${n}">${n}</span>`;
-    } else {
-      return `<span class="blank">${n}</span>`;
+function buildPassageHtml(l){
+  let p = l.passage;
+  // 替換題號為可點擊空格
+  for(let i=31;i<31+l.nQ;i++){
+    const ans = state.answered[i];
+    let cls = 'blank';
+    let label = String(i);
+    if(ans){
+      cls += ans.correct ? ' answered-ok' : ' answered-err';
+      label = `${i}(${ans.chosen})`;
     }
-  });
-  return html.replace(/\n\n/g,'<br><br>').replace(/\n/g,' ');
+    if(i === state.qOrder[state.qIdx] && !ans) cls += ' current';
+    p = p.replace(new RegExp(`\\b${i}\\b`,'g'),
+      `<span class="${cls}" onclick="jumpToQ(${i})" id="blank-${i}">${label}</span>`);
+  }
+  return `<div class="passage-wrap">${p.replace(/\n\n/g,'<br><br>').replace(/\n/g,' ')}</div>`;
 }
 
-function selectOpt(el, letter){
-  const q = curLesson.questions[cur.qIdx];
-  const correct = q.answer;
-  const allOpts = document.querySelectorAll('.opt');
-  allOpts.forEach(o=>o.classList.add('opt-disabled'));
-  allOpts.forEach(o=>{ o.onclick=null; });
+function buildQuestionHtml(l, num){
+  const ans = state.answered[num];
+  const pi = l.priority.find(p=>p.num===num);
 
-  const isCorrect = (letter === correct);
-  if(isCorrect){
-    el.classList.add('opt-correct');
-    cur.correct++;
-    // Mark blank green
-    const blank = document.getElementById(`blank-${q.blank}`);
-    if(blank){ blank.classList.add('answered'); blank.textContent = `${q.num}(${correct})`; }
-  } else {
-    el.classList.add('opt-wrong');
-    cur.wrong++;
-    // Mark correct option
-    allOpts.forEach(o=>{
-      const letter2 = o.querySelector('.opt-letter').textContent;
-      if(letter2 === correct) o.classList.add('opt-reveal');
-    });
-    const blank = document.getElementById(`blank-${q.blank}`);
-    if(blank){ blank.classList.add('wrong-ans'); blank.textContent = `${q.num}(${letter})`; }
-    cur.wrongList.push({
-      num: q.num,
-      stem: `第${q.num}題（${curLesson.year}）`,
-      yourAns: `你的選擇：(${letter}) ${q.optionTexts[q.options.indexOf(letter)]}`,
-      correct: `正確答案：(${correct}) ${q.optionTexts[q.options.indexOf(correct)]}`,
-      explanation: q.explanation
-    });
+  let html = `<div class="q-stem"><span class="q-blank-badge">${num}</span>請選出最適合填入空格的選項：</div>`;
+  html += `<div class="options" id="opts-${num}">`;
+  for(const opt of l.options){
+    let cls = 'opt';
+    if(ans){
+      cls += ' opt-off';
+      if(opt.k === l.answers[num-31]) cls += ' opt-ok';
+      else if(opt.k === ans.chosen && !ans.correct) cls += ' opt-err';
+    }
+    html += `<div class="${cls}" id="opt-${opt.k}" onclick="chooseOpt('${opt.k}',${num})">
+      <span class="opt-letter">${opt.k}</span>
+      <span>${opt.text}</span>
+    </div>`;
+  }
+  html += `</div>`;
+
+  // 解析（已答才顯示）
+  if(ans && pi){
+    const stratColor = {'代名詞掛鉤':'var(--blue)','轉折掛鉤':'var(--red)','關鍵字重疊':'var(--gold)','時序掛鉤':'var(--teal)','承上啟下':'var(--purple)','段首主題句':'var(--amber)','因果掛鉤':'var(--amber)','舉例掛鉤':'var(--amber)','平行列舉':'var(--blue)','排除消去':'var(--text-dim)','功能說明':'var(--teal)','論點支撐':'var(--teal)','細節補充':'var(--teal)','段落總結':'var(--purple)','舉例延伸':'var(--amber)'}[pi.type] || 'var(--gold)';
+    html += `<div class="explain-box">
+      <div class="ex-head">${ans.correct?'✓ 答對':'✗ 解析'}</div>
+      <span class="strategy-tag" style="background:var(--bg2);color:${stratColor};border:1px solid ${stratColor}33;">${pi.type}</span>
+      <p>${pi.signal}</p>
+    </div>`;
   }
 
-  const sm = STRATEGY_META[q.strategy] || STRATEGY_META['topic'];
-  const explainHtml = `
-    <div class="explain-box" style="margin-top:14px;">
-      <div class="ex-head">${isCorrect?'✓ 答對了！':'✗ 解析'}</div>
-      <span class="strategy-tag" style="background:${sm.bg};color:${sm.color};border:1px solid ${sm.border};">${sm.label}</span>
-      <p>${q.explanation}</p>
-    </div>
-  `;
-  document.getElementById('quiz-content').insertAdjacentHTML('beforeend', explainHtml);
-
-  const isLast = cur.qIdx >= curLesson.questions.length - 1;
-  const btnHtml = isLast
-    ? `<button class="action-btn btn-green" onclick="showResult()">查看結果 →</button>`
-    : `<button class="action-btn" onclick="nextQuestion()">下一題 →</button>`;
-  document.getElementById('quiz-content').insertAdjacentHTML('beforeend', btnHtml);
+  const remaining = state.qOrder.filter(n=>!state.answered[n]);
+  const isLast = remaining.length === 0 || (remaining.length === 1 && remaining[0] === num && ans);
+  if(ans){
+    if(isLast || Object.keys(state.answered).length >= l.nQ){
+      html += `<button class="action-btn btn-green" onclick="showResult()">查看結果 →</button>`;
+    } else {
+      html += `<button class="action-btn" onclick="nextQ()">下一題 →</button>`;
+    }
+  }
+  return html;
 }
 
-function nextQuestion(){
-  cur.qIdx++;
-  renderQuestion();
-  window.scrollTo(0,0);
+function jumpToQ(num){
+  if(state.answered[num] !== undefined) return; // 已答不跳
+  const l = LESSONS.find(x=>x.id===state.lessonId);
+  state.qIdx = state.qOrder.indexOf(num);
+  renderQuiz();
+  setTimeout(()=>{
+    const el = document.querySelector('.q-stem');
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  }, 100);
 }
 
-function confirmBack(){
-  if(confirm('確定要離開？目前進度將不會儲存。')) showScreen('scr-home');
+function chooseOpt(k, num){
+  const l = LESSONS.find(x=>x.id===state.lessonId);
+  if(state.answered[num]) return;
+  const correct = k === l.answers[num-31];
+  state.answered[num] = {chosen:k, correct};
+  renderQuiz();
+  setTimeout(()=>{
+    const el = document.getElementById(`opt-${k}`);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 100);
 }
 
-// ══════════════════════════════════════════════
-// RESULT
-// ══════════════════════════════════════════════
+function nextQ(){
+  const remaining = state.qOrder.filter(n=>!state.answered[n]);
+  if(remaining.length > 0){
+    state.qIdx = state.qOrder.indexOf(remaining[0]);
+    renderQuiz();
+    window.scrollTo(0,0);
+  } else {
+    showResult();
+  }
+}
+
+// ── RESULT ──
 function showResult(){
-  const total = curLesson.questions.length;
-  const score = cur.correct;
-  const pct = Math.round(score/total*100);
+  const l = LESSONS.find(x=>x.id===state.lessonId);
+  const total = l.nQ;
+  const correct = Object.values(state.answered).filter(a=>a.correct).length;
+  const wrong = total - correct;
+  const pct = Math.round(correct/total*100);
 
-  // Save progress
-  progress[cur.lessonId] = { done:true, score:`${score}`, total:`${total}` };
-  saveProgress();
+  state.scores[l.id] = {correct, wrong, total};
+  saveScores(state.scores);
   buildHome();
 
-  document.getElementById('res-score').textContent = `${score}/${total}`;
+  document.getElementById('res-score').textContent = `${correct}/${total}`;
   document.getElementById('res-label').textContent = `答對率 ${pct}%`;
-  document.getElementById('res-correct').textContent = cur.correct;
-  document.getElementById('res-wrong').textContent = cur.wrong;
+  document.getElementById('res-ok').textContent = correct;
+  document.getElementById('res-err').textContent = wrong;
   document.getElementById('res-total').textContent = total;
 
   let reviewHtml = '';
-  if(cur.wrongList.length > 0){
+  const wrongItems = Object.entries(state.answered).filter(([,a])=>!a.correct);
+  if(wrongItems.length > 0){
     reviewHtml += `<div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--text-xs);text-transform:uppercase;margin-bottom:10px;">需要複習的題目</div>`;
-    cur.wrongList.forEach(w=>{
+    for(const [numStr, ans] of wrongItems){
+      const num = parseInt(numStr);
+      const pi = l.priority.find(p=>p.num===num);
+      const correctAns = l.answers[num-31];
+      const correctText = l.options.find(o=>o.k===correctAns)?.text || '';
+      const chosenText = l.options.find(o=>o.k===ans.chosen)?.text || '';
       reviewHtml += `<div class="wrong-item">
-        <div class="wi-q">${w.stem}</div>
-        <div class="wi-your">✗ ${w.yourAns}</div>
-        <div class="wi-ans">✓ ${w.correct}</div>
-        <div class="wi-exp">${w.explanation}</div>
+        <div class="wi-q">第${num}題（${l.year}${l.etype}）${pi?` — ${pi.type}`:''}</div>
+        <div class="wi-your">✗ 你選了 (${ans.chosen}) ${chosenText.substring(0,50)}...</div>
+        <div class="wi-ans">✓ 正確 (${correctAns}) ${correctText.substring(0,50)}...</div>
+        ${pi?`<div class="wi-exp">${pi.signal}</div>`:''}
       </div>`;
-    });
+    }
   }
   document.getElementById('res-wrong-review').innerHTML = reviewHtml;
+
+  document.getElementById('res-reset-btn').onclick = ()=>{
+    if(confirm('確定清除所有練習記錄？')){
+      localStorage.removeItem('ps2_scores');
+      state.scores = {};
+      goHome();
+    }
+  };
+
   showScreen('scr-result');
 }
 
-function retryLesson(){
-  startLesson(cur.lessonId);
-}
+function retryLesson(){startLesson(state.lessonId);}
 
-// ══════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════
+// ── INIT ──
 buildHome();
 </script>
 </body>
